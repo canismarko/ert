@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block 'content' %}
+<div class="row">
+  <div class="about-box">
+    <h2>Breweries</h2>
+    <img src="{% static 'ert-emblem.png' %}" />
+    <p>
+      If you are a beer producer and would like to expand your
+      market into new areas, we'd love to hear from you.
+    </p>
+    <p>
+      We are constantly sampling and evaluating new offerings. Visit
+      our
+      <a href="{% url 'contact' %}" title="'Contact Us' page">
+	contact page</a> to get in
+      touch with a representative.
+    </p>
+  </div>
+  <div class="about-box">
+    <h2>Retailers</h2>
+    <img src="{% static 'ert-emblem.png' %}" />
+    <p>
+      If you want to <strong>sell great beer</strong> to the
+      public in Taiwan, we can provide the best. New quality
+      breweries open constantly in the USA and we spend a lot of
+      time evaluating them to find the best they have to offer.
+    </p>
+    <p>
+      Visit our contact page to get in touch with someone in your
+      area.
+    </p>
+  </div>
+  <div class="about-box">
+    <h2>Direct Sales</h2>
+    <img src="{% static 'ert-emblem.png' %}" />
+    <p>
+      If you live in Taiwan and want to buy the best beer to drink
+      at home, check back in the future. We will be selling beer
+      direct through our website soon.
+    </p>
+    <p>
+      We will continue to push our mission of bringing the passion
+      of craft-brewing to the Taiwanese market.
+    </p>
+  </div>
+</div>
+{% endblock %}

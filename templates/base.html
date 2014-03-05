@@ -1,0 +1,35 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>East Road Trading Co.</title>
+  <link rel="shortcut icon"
+	href="{% static 'favicon.ico' %}" />
+  <link rel="stylesheet"
+	href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css" />
+  <link rel="stylesheet/less" type="text/css" href="{% static 'ert.less' %}" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <a href="{% url 'home' %}" class="logo">
+	<img src="{% static 'ert-logo.png' %}" />
+	<h1>East Road Trading Company</h1>
+      </a>
+      <nav class="nav-menu">
+	<ul>
+	  <li><a href="{% url 'home' %}">About Us</a></li>
+	  <li><a href="#">Blog</a></li>
+	  <li><a href="{% url 'contact' %}">Contact Us</a></li>
+	</ul>
+      </nav>
+    </div>
+    {% block 'content' %}
+    {% endblock %}
+  </div>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.6.3/less.min.js"></script>
+</body>
+
+</html>

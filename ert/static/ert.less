@@ -1,0 +1,63 @@
+@import 'bootstrap-3.1.1/less/bootstrap.less';
+
+body {
+    background-image: url('/static/background-image.png');
+}
+
+.header {
+    .make-row();
+    margin-top: 20px;
+    .logo {
+	.make-md-column(6);
+    }
+    .logo {
+	text-decoration: none;
+	color: inherit;
+	img {
+	    width: 12%;
+	    position: relative;
+	    top: -9px;
+	}
+	h1 {
+	    display: inline-block;
+	    margin-left: 15px;
+	}
+    }
+    nav {
+	.make-md-column(4);
+	.make-md-column-offset(2);
+	li {
+	    display: inline-block;
+	    margin: 32px 20px;
+	}
+    }
+}
+
+.about-box {
+    font-size: 140%;
+    text-align: center;
+    margin-top: 30px;
+    .make-md-column(4);
+    img {
+	.opacity(0.4);
+    }
+}
+
+.contact-row {
+    .make-row();
+    margin-top: 20px;
+    .contact-box {
+	.make-md-column(4);
+	&:first-child {
+	    .make-md-column-offset(2);
+	}
+	h1 {
+	    font-size: 18px;
+	}
+	h2 {
+	    font-size: 16px;
+	    font-style: italic;
+	    margin-top: 0px;
+	}
+    }
+}
