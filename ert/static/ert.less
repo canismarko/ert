@@ -1,7 +1,11 @@
-@import 'bootstrap-3.1.1/less/bootstrap.less';
+@import 'bower/bootstrap/less/bootstrap.less';
 
 body {
     background-image: url('/static/background-image.png');
+    > .container {
+	background: white;
+	padding-bottom: 50px;
+    }
 }
 
 .header {
@@ -31,6 +35,11 @@ body {
 	    margin: 32px 20px;
 	}
     }
+}
+
+.footer {
+    .text-center;
+    margin-top: 20px;
 }
 
 .about-box {

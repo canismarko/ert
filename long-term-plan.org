@@ -1,0 +1,28 @@
+* Users
+** Brewers want to:
+   - View import/export documentation
+   - View status of their shipment?
+   - Contact us to discuss volumes
+   - Review purchase orders?
+** Taiwanese distributors want to:
+   - Place new orders
+   - Get price/product lists
+   - Get information about upcoming trade-shows we'll be attending?
+   - View import/export documentation
+   - View current inventory
+** Taiwan general public wants to:
+   - Have beer shipped to their house
+     - Can we get around legal impediments?
+   - Find a location to buy our beer
+   - Request a specific beer we don't carry
+   - See the current beers we carry
+   - See beer's we're planning on carrying soon
+* Specific Questions to answer
+  - [ ] Do we need to verify birthdate of visitors?
+  - [ ] Can we legally ship beers direct to consumers in Taiwan?
+  - [ ] Contact form should e-mail to...?
+* General ideas to discuss
+** Login section for Taiwanese distributors
+   - [ ] 1 account per distributor or multiple users inside company
+** Login section for breweries?
+** Online payment from distributors?

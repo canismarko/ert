@@ -13,7 +13,7 @@
 <body>
   <div class="container">
     <div class="header">
-      <a href="{% url 'home' %}" class="logo">
+      <a href="{% url 'home' %}" title="Home" class="logo">
 	<img src="{% static 'ert-logo.png' %}" />
 	<h1>East Road Trading Company</h1>
       </a>
@@ -28,6 +28,8 @@
     {% block 'content' %}
     {% endblock %}
   </div>
+
+  <p class="footer">&copy; Copyright Mark Wolf - All rights reserved</p>
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.6.3/less.min.js"></script>
 </body>

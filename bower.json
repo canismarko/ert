@@ -1,0 +1,13 @@
+{
+    "name": "ert",
+    "version": "0.0.0",
+    "authors": [
+	"Mark Wolf <mark.wolf.music@gmail.com>"
+    ],
+    "description": "Django application for East Road Trading Company",
+    "license": "MIT",
+    "private": true,
+    "dependencies": {
+	"bootstrap": ">=3.1.1"
+    }
+}
