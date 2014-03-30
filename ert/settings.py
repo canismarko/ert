@@ -26,7 +26,7 @@ TEMPLATE_DEBUG = True
 
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -91,3 +91,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'ert/static/')]
+
+# Allow deployment to override local setting
+try:
+    from local_settings import *
+except ImportError:
+    pass
