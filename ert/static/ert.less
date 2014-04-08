@@ -56,6 +56,30 @@ body {
     margin-top: 20px;
 }
 
+.home {
+    .make-row();
+    .text-center;
+    margin-top: 100px;
+    .retail,.breweries {
+	.make-md-column(4);
+    }
+    .retail {
+	.make-md-column-offset(1);
+    }
+    .breweries {
+	.make-md-column-offset(2);
+    }
+    .cta-btn {
+	.btn;
+	.btn-lg;
+	.btn-success;
+	margin-bottom: 10px;
+    }
+    p {
+	font-size: 120%;
+    }
+}
+
 .about-box {
     font-size: 140%;
     text-align: center;
@@ -66,14 +90,15 @@ body {
     }
 }
 
+.contact-col {
+    .make-md-column(6);
+}
+
 .contact-row {
     .make-row();
     margin-top: 20px;
     .contact-box {
-	.make-md-column(4);
-	&:first-child {
-	    .make-md-column-offset(2);
-	}
+	.make-md-column(6);
 	h1 {
 	    font-size: 18px;
 	}

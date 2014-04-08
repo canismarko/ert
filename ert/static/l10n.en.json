@@ -1,9 +1,23 @@
 {
     "COMPANY": "East Road Trading Company",
+    "SLOGAN": "Bringing the passion of US Craft Brewing to the Taiwanese Market",
+    "COPYRIGHT": "Copyright Mark Wolf - All rights reserved",
     "NAV": {
 	"ABOUT": "About Us",
 	"BLOG": "Blog",
-	"CONTACT": "Contact Us"
+	"BEER": "Products",
+	"CONTACT": "Contact Us",
+	"HOME": "Back to homepage"
+    },
+    "HOME": {
+	"TAIWAN_HEADING": "Beer in Taiwan",
+	"TAIWAN_DESC": "Want to find the best beers available in Taiwan? We sell to <strong>retailers and the general public</strong>.",
+	"TAIWAN_CONTACT": "Have questions? Feel free to",
+	"CONTACT_TITLE": "Visit contact page",
+	"TAIWAN_BUTTON": "View our products",
+	"BREWERIES_HEADING": "US Breweries",
+	"BREWERIES_DESC": "Do you have a beer to share with the world? Do you want to <strong>increase sales in a new market</strong> without all the losigstical headaches? We'd love to hear from you.",
+	"BREWERIES_BUTTON": "Get in touch"
     },
     "CONTACT": {
 	"WELCOME": "The following people can help answer your questions:",
@@ -27,5 +41,9 @@
 	    "POSITION": "Account Manager - Western USA",
 	    "EMAIL": "alevenburg@eastroadtrading.com"
 	}
+    },
+    "ABOUT": {
+	"TITLE": "About East Road Trading",
+	"SUMMARY": "East Road Trading Inc. provides logistics solutions for U.S businesses, assisting them in bringing their products to markets in Taiwan. We currently specialize in providing end-to-end import and distribution service solutions for U.S. craft breweries."
     }
 }

@@ -13,6 +13,9 @@ var ertMain = angular.module(
 	.when('/contact/', {
 	    templateUrl: '/static/contact.html'
 	})
+	.when('/about/', {
+	    templateUrl: '/static/about.html'
+	})
 }])
 
 .config(['$locationProvider', function($locationProvider) {

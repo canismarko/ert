@@ -8,13 +8,24 @@
 </script>
 
 <p translate>CONTACT.WELCOME</p>
-<div class="contact-row">
-  <div class="contact-box"
-       ng-repeat="person in ['JOE', 'AMBER']" ng-include="'contact-box.html'">
+
+<div class="row">
+  <!-- Form for general inquiries -->
+  <div class="contact-col">
+    [Contact Form]
   </div>
-</div>
-<div class="contact-row">
-  <div class="contact-box"
-       ng-repeat="person in ['MARK', 'ADAM']" ng-include="'contact-box.html'">
+
+  <!-- Contact information for customer service -->
+  <div class="contact-col">
+    <div class="contact-row">
+      <div class="contact-box"
+	   ng-repeat="person in ['JOE', 'AMBER']" ng-include="'contact-box.html'">
+      </div>
+    </div>
+    <div class="contact-row">
+      <div class="contact-box"
+	   ng-repeat="person in ['MARK', 'ADAM']" ng-include="'contact-box.html'">
+      </div>
+    </div>
   </div>
 </div>
