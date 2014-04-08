@@ -13,8 +13,6 @@ body {
     margin-top: 20px;
     .logo {
 	.make-md-column(6);
-    }
-    .logo {
 	text-decoration: none;
 	color: inherit;
 	img {
@@ -28,12 +26,28 @@ body {
 	}
     }
     nav {
-	.make-md-column(4);
-	.make-md-column-offset(2);
+	.make-md-column(5);
 	li {
+	    .pull-right;
 	    display: inline-block;
-	    margin: 32px 20px;
+	    padding: 32px 20px;
 	}
+    }
+    div.lang-select {
+	.make-md-column(1);
+	padding: 32px 0px;
+	div {
+    	    width: 35px;
+	    height: 23px;
+	    display: inline-block;
+	}
+	div.us-flag { background-image: url('/static/us-flag.png'); }
+	div.us-flag:hover {	background-position: 35px 0px; }
+	div.tw-flag {
+	    background-image: url('/static/tw-flag.png');
+	    background-position: 35px 0px;
+	}
+	div.tw-flag:hover { background-position: 0px 0px; }
     }
 }
 

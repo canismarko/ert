@@ -1,0 +1,16 @@
+<a href="/" title="Home" class="logo">
+  <img src="/static/ert-logo.png" />
+  <h1 translate>COMPANY</h1>
+</a>
+<nav class="nav-menu">
+  <ul>
+    <li><a href="/about/" translate>NAV.ABOUT</a></li>
+    <li><a href="/blog/" translate>NAV.BLOG</a></li>
+    <li><a href="/contact/" translate>NAV.CONTACT</a></li>
+  </ul>
+</nav>
+
+<div ng-controller="langSelect" class="lang-select">
+  <div class="us-flag" ng-click="setLanguage('en')"></div>
+  <div class="tw-flag" ng-click="setLanguage('zh_TW')"></div>
+</div>

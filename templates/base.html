@@ -1,8 +1,9 @@
 {% load staticfiles %}
 <!DOCTYPE html>
-<html>
+<html ng-app="ertMain">
 <head>
-  <title>East Road Trading Co.</title>
+  <meta charset="utf-8">
+  <title>East Road Trading Company</title>
   <link rel="shortcut icon"
 	href="{% static 'favicon.ico' %}" />
   <link rel="stylesheet"
@@ -12,30 +13,40 @@
   {% else %}
   <link rel="stylesheet" href="{% static 'ert.css' %}" />
   {% endif %}
+
 </head>
 
 <body>
+
   <div class="container">
-    <div class="header">
-      <a href="{% url 'home' %}" title="Home" class="logo">
-	<img src="{% static 'ert-logo.png' %}" />
-	<h1>East Road Trading Company</h1>
-      </a>
-      <nav class="nav-menu">
-	<ul>
-	  <li><a href="{% url 'home' %}">About Us</a></li>
-	  <li><a href="#">Blog</a></li>
-	  <li><a href="{% url 'contact' %}">Contact Us</a></li>
-	</ul>
-      </nav>
-    </div>
-    {% block 'content' %}
-    {% endblock %}
+
+    <div class="header" ng-include="'/static/header.html'"></div>
+
+    <div ng-view></div>
+
+    <p class="footer">&copy; Copyright Mark Wolf - All rights reserved</p>
+
   </div>
 
-  <p class="footer">&copy; Copyright Mark Wolf - All rights reserved</p>
-
   <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.6.3/less.min.js"></script>
+  {% if debug %}
+  <!-- <script src="{% static 'bower/jquery/dist/jquery.js' %}"></script> -->
+  <script src="{% static 'bower/angular/angular.js' %}"></script>
+  <script src="{% static 'bower/angular-animate/angular-animate.js' %}"></script>
+  <script src="{% static 'bower/angular-translate/angular-translate.js' %}"></script>
+  <script src="{% static 'bower/angular-translate-storage-cookie/angular-translate-storage-cookie.js' %}"></script>
+  <script src="{% static 'bower/angular-translate-storage-local/angular-translate-storage-local.js' %}"></script>
+  <script src="{% static 'bower/angular-translate-loader-static-files/angular-translate-loader-static-files.js' %}"></script>
+  <script src="{% static 'bower/angular-cookies/angular-cookies.js' %}"></script>
+  <script src="{% static 'bower/angular-route/angular-route.js' %}"></script>
+  {% else %}
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.15/angular.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bower-angular-translate/2.0.1/angular-translate.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.15/angular-animate.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.15/angular-route.min.js"></script>
+  {% endif %}
+  <script src="{% static 'ert-main.js' %}"></script>
+  <script src="{% static 'directives.js' %}"></script>
 </body>
 
 </html>

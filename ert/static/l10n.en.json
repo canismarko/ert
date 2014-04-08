@@ -1,0 +1,31 @@
+{
+    "COMPANY": "East Road Trading Company",
+    "NAV": {
+	"ABOUT": "About Us",
+	"BLOG": "Blog",
+	"CONTACT": "Contact Us"
+    },
+    "CONTACT": {
+	"WELCOME": "The following people can help answer your questions:",
+	"JOE": {
+	    "NAME": "Joseph Merrell",
+	    "POSITION": "CEO and general manager",
+	    "EMAIL": "jmerrell@eastroadtrading.com"
+	},
+	"AMBER": {
+	    "NAME": "Amberdine Sung",
+	    "POSITION": "CEO and general manager",
+	    "EMAIL": "amberdine@eastroadtrading.com"
+	},
+	"MARK": {
+	    "NAME": "Mark Wolf",
+	    "POSITION": "Account Manager - Eastern USA",
+	    "EMAIL": "mwolf@eastroadtrading.com"
+	},
+	"ADAM": {
+	    "NAME": "Adam Levenburg",
+	    "POSITION": "Account Manager - Western USA",
+	    "EMAIL": "alevenburg@eastroadtrading.com"
+	}
+    }
+}

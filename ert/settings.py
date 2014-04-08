@@ -21,6 +21,7 @@ SECRET_KEY = '1j#&hfvbisc%!-p0ctbhghdi_@t&e%sn@2d4w-0dlh&-&w+8s^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+INTERNAL_IPS = ['127.0.0.1', 'localhost']
 
 TEMPLATE_DEBUG = True
 
