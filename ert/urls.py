@@ -5,14 +5,14 @@ admin.autodiscover()
 
 urlpatterns = patterns(
     '',
-    # Examples:
-    # url(r'^$', 'ert.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
-
-    url(r'^$', TemplateView.as_view(template_name='home.html'),
-        name='home'),
-    url(r'^contact/$', TemplateView.as_view(template_name='contact.html'),
+    # API for submitting contact form
+    url(r'^contact-message/$', 'ert.views.contact_form',
         name='contact'),
 
+    # Default entry point for all angular pages
+    url(r'^', TemplateView.as_view(template_name='base.html'),
+        name='home'),
+
     url(r'^admin/', include(admin.site.urls)),
+
 )

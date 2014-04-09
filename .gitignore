@@ -2,3 +2,4 @@
 *.pyc
 long-term-plan.html
 ert/static/bower
+local_settings.py

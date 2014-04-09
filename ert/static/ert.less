@@ -40,6 +40,7 @@ body {
     	    width: 35px;
 	    height: 23px;
 	    display: inline-block;
+	    cursor: pointer;
 	}
 	div.us-flag { background-image: url('/static/us-flag.png'); }
 	div.us-flag:hover {	background-position: 35px 0px; }
@@ -72,7 +73,7 @@ body {
     .cta-btn {
 	.btn;
 	.btn-lg;
-	.btn-success;
+	.btn-primary;
 	margin-bottom: 10px;
     }
     p {
@@ -107,5 +108,34 @@ body {
 	    font-style: italic;
 	    margin-top: 0px;
 	}
+    }
+}
+
+.contact-form {
+    .control-label {
+	.make-md-column(4);
+	/* text-align: right; */
+    }
+    input,select,textarea {
+	.form-control;
+    }
+    .form-input {
+	.make-md-column(8)
+    }
+    textarea {
+	height: 100px;
+    }
+    /* Validation classes */
+    input.ng-dirty.ng-invalid,
+    &.ng-dirty input.ng-invalid {
+	border-color: @brand-danger;
+    }
+    .error {
+	font-weight: bold;
+	.text-danger;
+    }
+    /* Submission status feedback */
+    .alert {
+	.text-center;
     }
 }

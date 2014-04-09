@@ -20,7 +20,8 @@
 	"BREWERIES_BUTTON": "Get in touch"
     },
     "CONTACT": {
-	"WELCOME": "The following people can help answer your questions:",
+	"TITLE": "Contact East Road Trading",
+	"WELCOME": "The following people can also help answer your questions:",
 	"JOE": {
 	    "NAME": "Joseph Merrell",
 	    "POSITION": "CEO and general manager",
@@ -41,6 +42,27 @@
 	    "POSITION": "Account Manager - Western USA",
 	    "EMAIL": "alevenburg@eastroadtrading.com"
 	}
+    },
+    "CONTACT_FORM": {
+	"NAME_LABEL": "Your Name:",
+	"NAME_PLACEHOLDER": "Enter your name...",
+	"EMAIL_LABEL": "E-mail Address:",
+	"EMAIL_PLACEHOLDER": "Enter email address...",
+	"ERROR_REQUIRED": "Required so we can respond",
+	"EMAIL_INVALID": "Please enter a valid e-mail address",
+	"SUBJECT_LABEL": "Subject:",
+	"SUBJECTS": {
+	    "GENERAL": "General Inquiry",
+	    "RETAILER": "Taiwanese Retailer",
+	    "BREWERY": "US Brewery"
+	},
+	"MESSAGE_LABEL": "Message:",
+	"MESSAGE_PLACEHOLDER": "Type your message here...",
+	"SEND_BUTTON": "Send Message",
+	"RESET_BUTTON": "Reset form",
+	"STATUS_PENDING": "Sending...",
+	"STATUS_SUCCESS": "<strong>Message sent!</strong> We will contact you shortly.",
+	"STATUS_ERROR": "<strong>Message could not be sent!</strong> Check your internet connection and try again."
     },
     "ABOUT": {
 	"TITLE": "About East Road Trading",
