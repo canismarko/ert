@@ -11,7 +11,7 @@ normal = `tput sgr0`
 
 all: $(STATIC)ert.css
 
-$(STATIC)ert.css: $(STATIC)ert.less
+$(STATIC)ert.css: $(STATIC)ert.less $(STATIC)animations.less
 	$(DIVIDER)
-	@echo "$(bold)Building stylesheet orgwolf.css...$(normal)"
+	@echo "$(bold)Building stylesheet ert.css...$(normal)"
 	$(LESS) $(STATIC)ert.less > $(STATIC)ert.css

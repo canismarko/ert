@@ -1,11 +1,45 @@
-@import 'bower/bootstrap/less/bootstrap.less';
+@import (reference) 'bower/bootstrap/less/bootstrap.less';
+@import 'animations.less';
+
+body, html {
+    height: 100%;
+}
 
 body {
     background-image: url('/static/background-image.png');
-    > .container {
+    > .main-container {
+	.container;
 	background: white;
 	padding-bottom: 50px;
+	min-height: 100%;
     }
+}
+
+.logo {
+    text-decoration: none;
+    color: inherit;
+    h1 {
+	    display: inline-block;
+	    margin-left: 15px;
+    }
+    img {
+	width: 67px;
+	position: relative;
+	top: -9px;
+    }
+}
+
+.logo.animation-logo {
+    left: 30%;
+    top: 40%;
+    img {
+	width: 0px;
+	height: 0px;
+    }
+    h1 {
+	font-size: 0px;
+    }
+    position: fixed;
 }
 
 .header {
@@ -13,17 +47,6 @@ body {
     margin-top: 20px;
     .logo {
 	.make-md-column(6);
-	text-decoration: none;
-	color: inherit;
-	img {
-	    width: 12%;
-	    position: relative;
-	    top: -9px;
-	}
-	h1 {
-	    display: inline-block;
-	    margin-left: 15px;
-	}
     }
     nav {
 	.make-md-column(5);

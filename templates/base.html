@@ -6,6 +6,11 @@
   <title>East Road Trading Company</title>
   <link rel="shortcut icon"
 	href="{% static 'favicon.ico' %}" />
+  <style>
+    [ng-cloak], .ng-cloak {
+      display: none !important;
+    }
+  </style>
   <link rel="stylesheet"
 	href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css" />
   {% if debug %}
@@ -20,11 +25,15 @@
 
   {% csrf_token %}
 
-  <div class="container">
+  <div class="animation-logo logo" ng-cloak>
+    <img src="/static/ert-logo.png" /><h1 translate>COMPANY</h1>
+  </div>
+
+  <div class="main-container" ng-class="'true'">
 
     <div class="header" ng-include="'/static/header.html'"></div>
 
-    <div ng-view></div>
+    <div ng-view class="main-view"></div>
 
     <div class="footer" ng-include="'/static/footer.html'"></div>
 
@@ -32,7 +41,7 @@
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.6.3/less.min.js"></script>
   {% if debug %}
-  <!-- <script src="{% static 'bower/jquery/dist/jquery.js' %}"></script> -->
+  <script src="{% static 'bower/jquery/dist/jquery.js' %}"></script>
   <script src="{% static 'bower/angular/angular.js' %}"></script>
   <script src="{% static 'bower/angular-animate/angular-animate.js' %}"></script>
   <script src="{% static 'bower/angular-translate/angular-translate.js' %}"></script>
