@@ -1,4 +1,4 @@
-"use stricts";
+"use strict";
 
 var ertMain = angular.module(
     'ertMain', ['pascalprecht.translate', 'ngRoute', 'ngAnimate',
@@ -11,7 +11,11 @@ var ertMain = angular.module(
 	    templateUrl: '/static/home.html'
 	})
 	.when('/contact/', {
-	    templateUrl: '/static/contact.html'
+	    templateUrl: '/static/contact.html',
+	})
+	.when('/beer/', {
+	    templateUrl: '/static/beer-store.html',
+	    controller: 'beerStore'
 	})
 	.when('/about/', {
 	    templateUrl: '/static/about.html'
@@ -77,7 +81,32 @@ var ertMain = angular.module(
 		})
 	}
     };
-}])
+}]);
+
+ertMain.controller('beerStore', ['$scope', function($scope) {
+    $scope.beerList = [
+	{
+	    id: 1,
+	    picture: '/media/beer/two-hearted.jpg',
+	    brewery: 1,
+	    name: 'Two-hearted',
+	    description: 'A floral IPA with a hint of citrus',
+	    style: 1,
+	    abv: 7.0,
+	    stock: 50
+	},
+	{
+	    id: 2,
+	    picture: '/media/beer/dirty-bastard.jpg',
+	    brewery: 2,
+	    name: 'Dirty Bastard',
+	    description: 'A scotch ale, heavy on malt character',
+	    style: 2,
+	    abv: 8.5,
+	    stock: 100
+	}
+    ];
+}]);
 
 // Animations for the entering the main view
 ertMain.animation('.main-view', function() {
@@ -103,37 +132,37 @@ ertMain.animation('.main-view', function() {
 });
 
 // Animations for loading the page for the first time
-ertMain.animation('.header', function() {
-    var GROW_DURATION, MOVE_DURATION, FADE_DURATION;
-    GROW_DURATION = 1500;
-    MOVE_DURATION = 600;
-    FADE_DURATION = 300;
-    return {
-	enter: function(element, done) {
-	    var $container, $logo, $realLogo;
-	    $container = jQuery('.main-container')
-	    $logo = jQuery('.animation-logo');
-	    $realLogo = jQuery('.header .logo');
-	    $container.css('opacity', 0);
-	    $logo.find('h1').animate({'font-size': '36px'}, GROW_DURATION);
-	    $logo.find('img').animate({
-		height: '67px',
-		width: '67px'
-	    }, GROW_DURATION, function() {
-		$logo.animate({
-		    top: $realLogo.offset().top,
-		    left: $realLogo.offset().left + 15
-		}, MOVE_DURATION, function() {
-		    $container.css('opacity', 0);
-		    $container.show();
-		    $logo.animate({
-		    	opacity: 0
-		    }, FADE_DURATION, done);
-		    $container.animate({
-			opacity: 1
-		    }, FADE_DURATION, done);
-		});
-	    });
-	}
-    };
-});
+// ertMain.animation('.header', function() {
+//     var GROW_DURATION, MOVE_DURATION, FADE_DURATION;
+//     GROW_DURATION = 1500;
+//     MOVE_DURATION = 600;
+//     FADE_DURATION = 300;
+//     return {
+// 	enter: function(element, done) {
+// 	    var $container, $logo, $realLogo;
+// 	    $container = jQuery('.main-container')
+// 	    $logo = jQuery('.animation-logo');
+// 	    $realLogo = jQuery('.header .logo');
+// 	    $container.css('opacity', 0);
+// 	    $logo.find('h1').animate({'font-size': '36px'}, GROW_DURATION);
+// 	    $logo.find('img').animate({
+// 		height: '67px',
+// 		width: '67px'
+// 	    }, GROW_DURATION, function() {
+// 		$logo.animate({
+// 		    top: $realLogo.offset().top,
+// 		    left: $realLogo.offset().left + 15
+// 		}, MOVE_DURATION, function() {
+// 		    $container.css('opacity', 0);
+// 		    $container.show();
+// 		    $logo.animate({
+// 		    	opacity: 0
+// 		    }, FADE_DURATION, done);
+// 		    $container.animate({
+// 			opacity: 1
+// 		    }, FADE_DURATION, done);
+// 		});
+// 	    });
+// 	}
+//     };
+// });
