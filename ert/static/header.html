@@ -1,16 +1,19 @@
-<a href="/" title="{{ 'NAV.HOME' | translate }}" class="logo">
-  <img src="/static/ert-logo.png" /><h1 translate>COMPANY</h1>
-</a>
-<nav class="nav-menu">
-  <ul>
-    <li><a href="/about/" translate>NAV.ABOUT</a></li>
-    <li><a href="/blog/" translate>NAV.BLOG</a></li>
-    <li><a href="/beer/" translate>NAV.BEER</a></li>
-    <li><a href="/contact/" translate>NAV.CONTACT</a></li>
+<div class="logo">
+  <a href="/" title="{{ 'NAV.HOME' | translate }}">
+    <img src="/static/ert-logo.png" /><h1 translate>COMPANY</h1>
+  </a>
+</div>
+<div class="nav-menu">
+  <ul class="nav nav-pills">
+    <li ng-class="linkClasses.about"><a href="/about/" translate>NAV.ABOUT</a></li>
+    <li ng-class="linkClasses.blog"><a href="/blog/" translate>NAV.BLOG</a></li>
+    <li ng-class="linkClasses.beer"><a href="/beer/" translate>NAV.BEER</a></li>
+    <li ng-class="linkClasses.contact"><a href="/contact/" translate>NAV.CONTACT</a></li>
   </ul>
-</nav>
+</div>
 
 <div ng-controller="langSelect" class="lang-select">
-  <div class="us-flag" ng-click="setLanguage('en')"></div>
-  <div class="tw-flag" ng-click="setLanguage('zh_TW')"></div>
+  <div ng-click="switchLanguage()" translate>FLAG_TITLE</div>
+  <img ng-click="switchLanguage()"
+       src="/static/{{ 'FLAG' | translate }}" />
 </div>

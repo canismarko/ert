@@ -50,3 +50,37 @@ ertDirectives.directive('beerRow', [function() {
 	restrict: 'C'
     };
 }]);
+
+ertDirectives.directive('navMenu', ['$location', function($location) {
+    function link(scope, elem, attrs) {
+	var regexps = {
+	    'about': new RegExp('^/about/'),
+	    'blog': new RegExp('^/blog/'),
+	    'beer': new RegExp('^/beer/'),
+	    'contact': new RegExp('^/contact/'),
+	}
+	function setActiveLink() {
+	    var path;
+	    path = $location.path();
+	    scope.linkClasses = {};
+	    // Set the current active link menu item
+	    if (regexps.about.exec(path)) {
+		scope.linkClasses.about = 'active';
+	    } else if (regexps.blog.exec(path)) {
+		scope.linkClasses.blog = 'active';
+	    } else if (regexps.beer.exec(path)) {
+		scope.linkClasses.beer = 'active';
+	    } else if (regexps.contact.exec(path)) {
+		scope.linkClasses.contact = 'active';
+	    }
+	}
+	setActiveLink();
+	scope.$on('$locationChangeStart', function() {
+	    setActiveLink();
+	});
+    }
+    return {
+	link: link,
+	restrict: 'C'
+    };
+}]);

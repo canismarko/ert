@@ -2,6 +2,9 @@
     "COMPANY": "East Road Trading Company",
     "SLOGAN": "Bringing the passion of US Craft Brewing to the Taiwanese Market",
     "COPYRIGHT": "Copyright Mark Wolf - All rights reserved",
+    "FLAG": "tw-flag.png",
+    "FLAG_TITLE": "線貿",
+    "NEXT_LANG": "zh_TW",
     "NAV": {
 	"ABOUT": "About Us",
 	"BLOG": "Blog",

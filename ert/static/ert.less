@@ -17,6 +17,9 @@ body {
 .logo {
     text-decoration: none;
     color: inherit;
+    a {
+	color: inherit;
+    }
     h1 {
 	    display: inline-block;
 	    margin-left: 15px;
@@ -47,30 +50,18 @@ body {
     .logo {
 	.make-md-column(6);
     }
-    nav {
+    .nav-menu {
+	.make-xs-column(10);
 	.make-md-column(5);
-	li {
-	    .pull-right;
-	    display: inline-block;
-	    padding: 32px 20px;
-	}
+	ul { .pull-right;}
     }
-    div.lang-select {
+    .lang-select {
+	.make-xs-column(2);
 	.make-md-column(1);
-	padding: 32px 0px;
-	div {
-    	    width: 35px;
-	    height: 23px;
-	    display: inline-block;
+	.text-center;
+	img,>div {
 	    cursor: pointer;
 	}
-	div.us-flag { background-image: url('/static/us-flag.png'); }
-	div.us-flag:hover {	background-position: 35px 0px; }
-	div.tw-flag {
-	    background-image: url('/static/tw-flag.png');
-	    background-position: 35px 0px;
-	}
-	div.tw-flag:hover { background-position: 0px 0px; }
     }
 }
 
