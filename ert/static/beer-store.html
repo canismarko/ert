@@ -1,28 +1,85 @@
-<h1 translate>BEER_LIST.TITLE</h1>
+<div class="row">
+  <!-- List of possible beers to buy -->
+  <div class="beer-list">
+    <h1><span class="glyphicon glyphicon-glass"></span>
+      {{ 'BEER_STORE.TITLE' | translate}}
+    </h1>
+    <table class="table table-striped">
+      <tr ng-repeat="beer in beerList track by $index" class="beer-row">
+	<td>
+	  <img src="{{ beer.picture }}" alt="{{ beer.name }}" />
+	</td>
+	<td>
+	  <h1 class="beer-name">{{ beer.name }}</h1>
+	  <span class="brewery">
+	    {{ 'BEER_STORE.BREWERY' | translate:translationData }}
+	  </span>
+	</td>
+	<td>{{ beer.description }}</td>
+	<td>
+	  <form class="form-inline">
+	    <div class="form-group">
+	      <label for="quantity" class="sr-only" translate>BEER_STORE.QUANTITY_PLACEHOLDER</label>
+	      <input type="number" ng-model="quantity"
+	  	     id="quantity" min="0" max="{{ beer.stock }}"
+	  	     placeholder="{{ 'BEER_STORE.QUANTITY_PLACEHOLDER' | translate }}" />
+	    </div>
+	    <button ng-click="addToOrder(beer, quantity)" translate>BEER_STORE.ADD_BUTTON</button>
+	  </form>
+	</td>
+      </tr>
+    </table>
+    <!-- <div ng-repeat="beer in beerList" class="beer-row"> -->
+    <!--   <div class="beer-thumbnail"> -->
+    <!-- 	<img src="{{ beer.picture }}" alt="{{ beer.name }}" /> -->
+    <!--   </div> -->
+    <!--   <div class="beer-summary"> -->
+    <!-- 	<div class="row"> -->
+    <!-- 	  <div class="beer-description"> -->
+    <!-- 	    <h1>{{ beer.name }}</h1> -->
+    <!-- 	    <span class="brewery">{{ 'BEER_STORE.BREWERY' | translate:translationData }}</span> -->
+    <!-- 	    <span class="description">{{ beer.description }}</span> -->
+    <!-- 	  </div> -->
+    <!-- 	  <div class="beer-controls"> -->
+    <!-- 	    <form class="form-inline"> -->
+    <!-- 	      <div class="form-group"> -->
+    <!-- 		<label for="quantity" class="sr-only" translate>BEER_STORE.QUANTITY_PLACEHOLDER</label> -->
+    <!-- 		<input type="number" ng-model="quantity" -->
+    <!-- 		       id="quantity" min="0" max="{{ beer.stock }}" -->
+    <!-- 		       placeholder="{{ 'BEER_STORE.QUANTITY_PLACEHOLDER' | translate }}" /> -->
+    <!-- 	      </div> -->
+    <!-- 	      <button ng-click="addToOrder(beer, quantity)" translate>BEER_STORE.ADD_BUTTON</button> -->
+    <!-- 	    </form> -->
+    <!-- 	  </div> -->
+    <!-- 	</div> -->
+    <!--   </div> -->
+  </div><!-- /.beer-list -->
 
-<div class="beer-list">
-<div ng-repeat="beer in beerList" class="beer-row">
-  <div class="beer-thumbnail">
-    <img src="{{ beer.picture }}" alt="{{ beer.name }}" />
-  </div>
-  <div class="beer-summary">
-    <div class="row">
-      <div class="beer-description">
-	<h1>{{ beer.name }}</h1>
-	<span class="brewery">{{ 'BEER_LIST.BREWERY' | translate:translationData }}</span>
-	<span class="description">{{ beer.description }}</span>
+  <!-- Shopping cart -->
+  <div class="beer-cart">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+	<h1 class="panel-title">
+	  <span class="glyphicon glyphicon-shopping-cart"></span>
+	  {{ 'BEER_STORE.CART.TITLE' | translate }}
+	</h1>
       </div>
-      <div class="beer-controls">
-	<form class="form-inline">
-	  <div class="form-group">
-	    <label for="quantity" class="sr-only" translate>BEER_LIST.QUANTITY_PLACEHOLDER</label>
-	    <input type="number" id="quantity" min="0" max="{{ beer.stock }}"
-		   placeholder="{{ 'BEER_LIST.QUANTITY_PLACEHOLDER' | translate }}" />
-	  </div>
-	  <button translate>BEER_LIST.ADD_BUTTON</button>
-	</form>
-      </div>
-    </div>
-  </div>
-</div>
+      <div class="panel-body">
+	<div class="alert-empty" ng-show="currentOrder.length === 0" translate>BEER_STORE.CART.EMPTY_MESSAGE</div>
+	<ul class="current-order">
+	  <li ng-repeat="orderItem in currentOrder">
+	    <h2>{{ orderItem.beer.name }}
+	      <button class="close" aria-hidden="true"
+		      ng-click="removeFromOrder(orderItem)">&times;</button>
+	    </h2>
+	    <p class="quantity">{{ 'BEER_STORE.CART.QUANTITY' | translate:orderItem }}</p>
+	  </li>
+	</ul>
+	<button class="btn btn-primary" translate>BEER_STORE.CART.SUBMIT</button>
+	<button class="btn btn-link" ng-click="resetOrder()" translate>
+	  BEER_STORE.CART.RESET
+	</button>
+      </div><!-- /.panel-body -->
+    </div><!-- /.panel -->
+  </div><!-- /.beer-cart -->
 </div>

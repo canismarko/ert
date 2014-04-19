@@ -13,11 +13,12 @@
       display: none !important;
     }
   </style>
-  <link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css" />
   {% if debug %}
+  <link rel="stylesheet" href="{% static 'bower/bootstrap/dist/css/bootstrap.min.css' %}" />
   <link rel="stylesheet/less" type="text/css" href="{% static 'ert.less' %}" />
   {% else %}
+  <link rel="stylesheet"
+	href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css" />
   <link rel="stylesheet" href="{% static 'ert.css' %}" />
   {% endif %}
 
@@ -41,8 +42,8 @@
 
   </div>
 
-  <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.6.3/less.min.js"></script>
   {% if debug %}
+  <script src="{% static 'bower/less/dist/less-1.7.0.js' %}"></script>
   <script src="{% static 'bower/jquery/dist/jquery.js' %}"></script>
   <script src="{% static 'bower/angular/angular.js' %}"></script>
   <script src="{% static 'bower/angular-animate/angular-animate.js' %}"></script>
@@ -63,8 +64,10 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.15/angular-cookies.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.15/angular-route.min.js"></script>
   {% endif %}
+  <script src="{% static 'bower/angularLocalStorage/src/angularLocalStorage.js' %}"></script>
   <script src="{% static 'ert-main.js' %}"></script>
   <script src="{% static 'directives.js' %}"></script>
+  {% if not debug %}<script src="{% static 'animations.js' %}"></script>{% endif %}
 </body>
 
 </html>
