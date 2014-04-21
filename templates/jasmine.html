@@ -1,0 +1,43 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Jasmine Test runner</title>
+
+    <link rel="shortcut icon" type="image/png" href="{% static 'bower/jasmine/images/jasmine_favicon.png' %}">
+
+    <link rel="stylesheet" type="text/css"
+	  href="{% static 'bower/jasmine/lib/jasmine-core/jasmine.css' %}">
+
+  </head>
+  <body>
+    <!-- Jasmine javascript files -->
+    <script src="{{ STATIC_URL }}bower/jasmine/lib/jasmine-core/jasmine.js"></script>
+    <script src="{{ STATIC_URL }}bower/jasmine/lib/jasmine-core/jasmine-html.js"></script>
+    <script src="{{ STATIC_URL }}bower/jasmine/lib/jasmine-core/boot.js"></script>
+
+    <!-- Libraries -->
+    <script src="{{ STATIC_URL }}bower/jquery/dist/jquery.js"></script>
+    <!-- <script src="{{ STATIC_URL }}bower/bootstrap/dist/js/bootstrap.js"></script> -->
+
+    <script src="{% static 'bower/angular/angular.js' %}"></script>
+    <!-- <script src="{{ STATIC_URL }}bower/angular-animate/angular-animate.js"></script> -->
+    <script src="{% static 'bower/angular-mocks/angular-mocks.js' %}"></script>
+    <!-- <script src="{{ STATIC_URL }}bower/angular-resource/angular-resource.js"></script> -->
+    <!-- <script src="{{ STATIC_URL }}bower/angular-sanitize/angular-sanitize.js"></script> -->
+    <!-- <script src="{{ STATIC_URL }}bower/angular-cookies/angular-cookies.js"></script> -->
+    <!-- <script src="{{ STATIC_URL }}bower/angular-route/angular-route.js"></script> -->
+    <script src="{% static 'bower/angular-translate/angular-translate.js' %}"></script>
+    <script src="{% static 'bower/angular-local-storage/angular-local-storage.js' %}"></script>
+
+    <!-- ERT files -->
+    <script src="{% static 'ert-main.js' %}"></script>
+    <script src="{% static 'services.js' %}"></script>
+    <script src="{% static 'directives.js' %}"></script>
+
+    <!-- include spec files here... -->
+    <script src="{% static 'tests.js' %}"></script>
+
+  </body>
+</html>

@@ -1,8 +1,8 @@
 "use strict";
 
 var ertMain = angular.module(
-    'ertMain', ['pascalprecht.translate', 'ngRoute', 'ngAnimate',
-		'angularLocalStorage', 'ertDirectives', 'ngCookies']
+    'ertMain', ['pascalprecht.translate', 'ngRoute', 'ngAnimate', 'ngCookies',
+		'ertDirectives', 'ertFilters', 'ertServices']
 )
 
 .config(['$routeProvider', function($routeProvider) {
@@ -15,6 +15,10 @@ var ertMain = angular.module(
 	})
 	.when('/beer/', {
 	    templateUrl: '/static/beer-store.html',
+	    controller: 'beerStore'
+	})
+	.when('/beer/:beerId/:beerSlug/', {
+	    templateUrl: '/static/beer-detail.html',
 	    controller: 'beerStore'
 	})
 	.when('/about/', {
@@ -35,7 +39,7 @@ var ertMain = angular.module(
 	    suffix: '.json'
 	})
 	.preferredLanguage('en')
-	.fallbackLanguage('en')
+	// .fallbackLanguage('en')
 }])
 
 .controller('langSelect', ['$scope', '$translate', function($scope, $translate) {
@@ -85,44 +89,50 @@ var ertMain = angular.module(
     };
 }]);
 
-ertMain.controller('beerStore', ['$scope', 'storage', function($scope, storage) {
+ertMain.controller('beerStore', ['$scope', '$routeParams', 'currentOrder', function($scope, $routeParams, currentOrder) {
     $scope.beerList = [
 	{
 	    id: 1,
-	    picture: '/media/beer/two-hearted.jpg',
+	    thumbnail: '/media/beer/two-hearted-thumbnail.jpg',
 	    brewery: 1,
 	    name: 'Two-hearted',
 	    description: 'A floral IPA with a hint of citrus',
 	    style: 1,
 	    abv: 7.0,
-	    stock: 50
+	    stock: 0,
+	    price: 120,
 	},
 	{
 	    id: 2,
-	    picture: '/media/beer/dirty-bastard.jpg',
+	    thumbnail: '/media/beer/dirty-bastard.jpg',
 	    brewery: 2,
 	    name: 'Dirty Bastard',
 	    description: 'A scotch ale, heavy on malt character',
 	    style: 2,
 	    abv: 8.5,
-	    stock: 100
+	    stock: 100,
+	    price: 135,
 	}
     ];
+    if ($routeParams.beerId) {
+	$scope.beer = {
+	    id: 1,
+	    picture: '/media/beer/two-hearted-full.png',
+	    brewery: 1,
+	    name: 'Two-hearted',
+	    description: 'A floral IPA with a hint of citrus',
+	    detail: 'Bell\'s Two Hearted Ale is defined by its intense hop aroma and malt balance. Hopped exclusively with the Centennial hop varietal from the Pacific Northwest, massive additions in the kettle and again in the fermenter lend their characteristic grapefruit and pine resin aromas. A significant malt body balances this hop presence; together with the signature fruity aromas of Bell\'s house yeast, this leads to a remarkably drinkable American-style India Pale Ale.',
+	    style: 1,
+	    abv: 7.0,
+	    ibu: 55,
+	    stock: 0,
+	    price: 120,
+	};
+	$scope.stockClasses = {
+	    'text-success': $scope.beer.stock > 20,
+	    'text-warning': $scope.beer.stock <= 20
+	}
+    }
     // Persistent local storage for the user's shopping cart
-    storage.bind($scope, 'currentOrder', {defaultValue: []});
-    // Handlers for adding or removing from the current order
-    $scope.addToOrder = function(beer, quantity) {
-	$scope.currentOrder.push({
-	    beer: beer,
-	    quantity: quantity
-	});
-    };
-    $scope.removeFromOrder = function(orderItem) {
-	var i;
-	i = $scope.currentOrder.indexOf(orderItem);
-	$scope.currentOrder.splice(i, 1);
-    };
-    $scope.resetOrder = function() {
-	$scope.currentOrder.splice(0, $scope.currentOrder.length);
-    };
+    $scope.currentOrder = currentOrder;
 }]);

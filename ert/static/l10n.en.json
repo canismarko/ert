@@ -1,10 +1,11 @@
 {
     "COMPANY": "East Road Trading Company",
     "SLOGAN": "Bringing the passion of US Craft Brewing to the Taiwanese Market",
-    "COPYRIGHT": "Copyright Mark Wolf - All rights reserved",
+    "COPYRIGHT": "Copyright - All rights reserved",
     "FLAG": "tw-flag.png",
     "FLAG_TITLE": "線貿",
     "NEXT_LANG": "zh_TW",
+    "CLOSE_BUTTON": "Close",
     "NAV": {
 	"ABOUT": "About Us",
 	"BLOG": "Blog",
@@ -74,14 +75,31 @@
     "BEER_STORE": {
 	"TITLE": "Beers We Carry",
 	"ADD_BUTTON": "Add",
-	"QUANTITY_PLACEHOLDER": "Quantity...",
-	"BREWERY": "{{ style }} by {{ brewery }}",
+	"QUANTITY_PLACEHOLDER": "Cases...",
+	"BREWERY": "by {{ name }}",
+	"OUT_OF_STOCK": "Out of stock",
+	"CART_BUTTON": "Cart ({{ length }})",
+	"CART_BUTTON_EMPTY": "No items",
 	"CART": {
-	    "TITLE": "Your Quote",
+	    "TITLE": "Request a Quote",
 	    "EMPTY_MESSAGE": "Your cart is currently empty.",
 	    "QUANTITY": "Quantity: {{ quantity }}",
-	    "SUBMIT": "Submit",
-	    "RESET": "Reset"
+	    "RESET": "Remove all",
+	    "SUBMIT": "Checkout",
+	    "TOTAL": "{{ quantity }} cases total = {{ amount }}",
+	    "TH_BEER": "Beer",
+	    "TH_QUANTITY": "Cases",
+	    "TH_UNITPRICE": "Unit price",
+	    "TH_TOTALPRICE": "Price"
 	}
+    },
+    "BEER_DETAIL": {
+	"BACK_BUTTON": "Beer List",
+	"ADD_BUTTON": "Add to Cart",
+	"STYLE": "Style:",
+	"STOCK": "Stock:",
+	"ABV": "ABV:",
+	"IBU": "IBUs:",
+	"PRICE": "Price:"
     }
 }

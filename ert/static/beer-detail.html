@@ -1,0 +1,54 @@
+<!-- "Back" and "Cart" buttons -->
+<div class="row">
+  <div class="col-md-6">
+    <a href="/beer/" class="back-btn">
+      <span class="back-icon"></span>
+      {{ 'BEER_DETAIL.BACK_BUTTON' | translate }}
+    </a>
+  </div>
+  <div class="col-md-6 text-right" ng-include="'/static/beer-cart.html'">
+  </div>
+</div>
+
+<div class="row beer-detail">
+  <div class="col-md-6 col-md-push-6">
+    <h1>{{ beer.name }}</h1>
+    <h2 class="brewery">{{ 'BEER_STORE.BREWERY' | translate:brewery }}</h2>
+
+    <div class="add-control">
+      <form class="form-inline" name="addForm">
+	<div class="form-group">
+	  <label for="quantity" class="sr-only" translate>BEER_STORE.QUANTITY_PLACEHOLDER</label>
+	  <input type="number" ng-model="quantity"
+		 id="quantity" min="0"
+		 placeholder="{{ 'BEER_STORE.QUANTITY_PLACEHOLDER' | translate }}" />
+	</div>
+	<button type="button" ng-disabled="!(quantity > 0)"
+		ng-click="addToOrder()" translate>BEER_DETAIL.ADD_BUTTON</button>
+      </form>
+    </div><!-- /.add-control -->
+    <div class="characteristics">
+      <p>{{ 'BEER_DETAIL.STYLE' | translate }} {{ style.long_name }}</p>
+      <p>{{ 'BEER_DETAIL.STOCK' | translate }}
+	<span ng-show="beer.stock > 0" ng-class="stockClasses">
+	  {{ currentBeer.stock }}</span>
+	<span ng-show="beer.stock <= 0" class="text-danger" translate>
+	  BEER_STORE.OUT_OF_STOCK</span>
+      </p>
+      <p>{{ 'BEER_DETAIL.ABV' | translate }} {{ beer.abv }}%</p>
+      <p>{{ 'BEER_DETAIL.IBU' | translate }} {{ beer.ibu }}</p>
+      <p>{{ 'BEER_DETAIL.PRICE' | translate }} {{ beer.price }}</p>
+    </div>
+
+    <p class="description">{{ beer.detail }}</p>
+  </div>
+
+  <div class="col-md-6 col-md-pull-6">
+    <img src="{{ beer.picture }}"
+	 class="img-responsive"
+	 alt="Photo of {{ beer.name }}" />
+  </div>
+
+</div>
+
+<ng-include src="'/static/beer-cart-modal.html'"></ng-include>

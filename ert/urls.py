@@ -16,6 +16,10 @@ urlpatterns = patterns(
         'document_root': settings.MEDIA_ROOT
     }),
 
+    # Jasmine front-end unit tests
+    url(r'^test/jasmine/$', TemplateView.as_view(template_name='jasmine.html'),
+        name='jasmine'),
+
     # Default entry point for all angular pages
     url(r'^', TemplateView.as_view(template_name='base.html'),
         name='home'),

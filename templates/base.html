@@ -45,6 +45,7 @@
   {% if debug %}
   <script src="{% static 'bower/less/dist/less-1.7.0.js' %}"></script>
   <script src="{% static 'bower/jquery/dist/jquery.js' %}"></script>
+  <script src="{% static 'bower/bootstrap/dist/js/bootstrap.js' %}"></script>
   <script src="{% static 'bower/angular/angular.js' %}"></script>
   <script src="{% static 'bower/angular-animate/angular-animate.js' %}"></script>
   <script src="{% static 'bower/angular-translate/angular-translate.js' %}"></script>
@@ -64,9 +65,11 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.15/angular-cookies.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.15/angular-route.min.js"></script>
   {% endif %}
-  <script src="{% static 'bower/angularLocalStorage/src/angularLocalStorage.js' %}"></script>
-  <script src="{% static 'ert-main.js' %}"></script>
+  <script src="{% static 'bower/angular-local-storage/angular-local-storage.js' %}"></script>
+  <script src="{% static 'services.js' %}"></script>
+  <script src="{% static 'filters.js' %}"></script>
   <script src="{% static 'directives.js' %}"></script>
+  <script src="{% static 'ert-main.js' %}"></script>
   {% if not debug %}<script src="{% static 'animations.js' %}"></script>{% endif %}
 </body>
 
