@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django_summernote',
     'blog',
+    'store',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -53,7 +54,6 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'ert.urls'
 
 WSGI_APPLICATION = 'ert.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
@@ -85,7 +85,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/

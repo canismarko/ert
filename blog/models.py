@@ -1,3 +1,5 @@
+from datetime import datetime as dt
+
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -8,7 +10,7 @@ class Post(models.Model):
     author = models.ForeignKey(User)
     text_en = models.TextField(blank=True)
     text_zh_TW = models.TextField(blank=True)
-    published_timestamp = models.DateTimeField(auto_now=True)
+    published_timestamp = models.DateTimeField(default=dt.now)
     draft = models.BooleanField(default=False)
 
     def __str__(self):
