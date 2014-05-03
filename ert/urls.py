@@ -12,6 +12,9 @@ urlpatterns = patterns(
     url(r'^contact-message/$', 'ert.views.contact_form',
         name='contact'),
 
+    # Static files for WYSIWYG admin editor
+    url(r'^summernote', include('django_summernote.urls')),
+
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
         'document_root': settings.MEDIA_ROOT
     }),
@@ -20,10 +23,10 @@ urlpatterns = patterns(
     url(r'^test/jasmine/$', TemplateView.as_view(template_name='jasmine.html'),
         name='jasmine'),
 
-    # Default entry point for all angular pages
+    url(r'^admin/', include(admin.site.urls)),
+
+    # # Default entry point for all angular pages
     url(r'^', TemplateView.as_view(template_name='base.html'),
         name='home'),
-
-    url(r'^admin/', include(admin.site.urls)),
 
 )
