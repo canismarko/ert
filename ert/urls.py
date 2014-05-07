@@ -4,6 +4,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.staticfiles import views
 from django.views.generic import TemplateView
+
 admin.autodiscover()
 
 urlpatterns = patterns(
@@ -11,6 +12,9 @@ urlpatterns = patterns(
     # API for submitting contact form
     url(r'^contact-message/$', 'ert.views.contact_form',
         name='contact'),
+
+    # API for beer store
+    url(r'^api/store/', include('store.urls')),
 
     # Static files for WYSIWYG admin editor
     url(r'^summernote', include('django_summernote.urls')),

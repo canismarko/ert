@@ -16,6 +16,7 @@
 	"angular-route": ">=1.2.16",
 	"angular-cookies": ">=1.2.16",
 	"angular-mocks": ">=1.2.16",
+	"angular-resource": ">=1.2.16",
 	"angular-local-storage": ">=0.0.1",
 	"angular-translate": ">=2.1.0",
 	"angular-translate-storage-local": ">=2.0.0",

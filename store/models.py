@@ -23,7 +23,8 @@ class Beer(models.Model):
     thumbnail = models.ImageField(null=True, upload_to="beer")
 
     def __str__(self):
-        return self.name
+        return "{brewery} - {name}".format(name=self.name,
+                                         brewery=self.brewery.name)
 
 
 class Brewery(models.Model):
@@ -36,6 +37,8 @@ class Brewery(models.Model):
     description_en = models.TextField(blank=True)
     description_zh_TW = models.TextField(blank=True)
 
+    def __str__(self):
+        return self.name
 
 class Style(models.Model):
     """
@@ -47,6 +50,10 @@ class Style(models.Model):
     long_name_zh_TW = models.CharField(max_length=100, blank=True)
     family = models.ForeignKey('StyleFamily')
 
+    def __str__(self):
+        return "{long} ({short})".format(long=self.long_name_en,
+                                         short=self.short_name_en)
+
 
 class StyleFamily(models.Model):
     """
@@ -55,14 +62,24 @@ class StyleFamily(models.Model):
     name_en = models.CharField(max_length=20)
     name_zh_TW = models.CharField(max_length=20)
 
+    def __str__(self):
+        return self.name_en
+
 
 class SupplyUnit(models.Model):
     """
     A specific batch of specific beer that was ordered together.
     """
-    beer = models.ForeignKey(Beer)
+    beer = models.ForeignKey(Beer, related_name='supplies')
     quantity = models.IntegerField()
     order_date = models.DateTimeField(null=True, default=dt.now)
+
+    def __str__(self):
+        return "{beer} - {date} ({quantity})".format(
+            beer=self.beer.name,
+            date=self.order_date.date(),
+            quantity=self.quantity
+        )
 
 
 class Order(models.Model):

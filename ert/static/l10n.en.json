@@ -73,11 +73,14 @@
 	"SUMMARY": "East Road Trading Inc. provides logistics solutions for U.S businesses, assisting them in bringing their products to markets in Taiwan. We currently specialize in providing end-to-end import and distribution service solutions for U.S. craft breweries."
     },
     "BEER_STORE": {
+	"CURRENCY": "TWD",
 	"TITLE": "Beers We Carry",
 	"ADD_BUTTON": "Add",
 	"QUANTITY_PLACEHOLDER": "Cases...",
+	"STYLE": "{{ short_name_en }}",
+	"DESCRIPTION": "{{ description_en }}",
 	"BREWERY": "by {{ name }}",
-	"OUT_OF_STOCK": "Out of stock",
+	"OUT_OF_STOCK": "Backorder",
 	"CART_BUTTON": "Cart ({{ length }})",
 	"CART_BUTTON_EMPTY": "No items",
 	"CART": {
@@ -97,9 +100,11 @@
 	"BACK_BUTTON": "Beer List",
 	"ADD_BUTTON": "Add to Cart",
 	"STYLE": "Style:",
+	"STYLE_NAME": "{{ long_name_en }}",
 	"STOCK": "Stock:",
 	"ABV": "ABV:",
 	"IBU": "IBUs:",
-	"PRICE": "Price:"
+	"PRICE": "Price:",
+	"DESCRIPTION": "{{ detail_en }}"
     }
 }

@@ -2,44 +2,20 @@ angular.module(
     'ertDirectives', ['ertServices', 'pascalprecht.translate']
 )
 
+// Directive to show the details for a beer in the product list
 .directive('beerRow', ['currentOrder', function(currentOrder) {
-    var breweries = [
-	{
-	    id: 1,
-	    name: 'Bell\'s Brewery',
-	    city: 'Kalamazoo',
-	    state: 'Michigan',
-	    description: 'Hello, there Kalamazoo'
-	},
-	{
-	    id: 2,
-	    name: 'Founder\'s',
-	    city: 'Grand Rapids',
-	    state: 'Michigan',
-	    description: 'It\'s grand!!'
-	}
-    ];
-    var styles = [
-	{
-	    id: 1,
-	    short_name: 'IPA',
-	    long_name: 'India pale ale',
-	    description: 'A light, refreshing ale but very heavy on bittering hops'
-	},
-	{
-	    id: 2,
-	    short_name: 'Scotch ale',
-	    long_name: null,
-	    description: 'A very flavorful ale with strong malty characters'
-	}
-    ];
     function link(scope, elem, attrs) {
-	scope.brewery = breweries.filter(function(brewery) {
-	    return brewery.id === scope.beer.brewery;
-	})[0];
-	scope.style = styles.filter(function(style) {
-	    return style.id === scope.beer.style;
-	})[0];
+	// Get this beer's brewery and style objects
+	scope.breweries.$promise.then(function() {
+	    scope.brewery = scope.breweries.filter(function(brewery) {
+		return brewery.id === scope.beer.brewery;
+	    })[0];
+	});
+	scope.beerStyles.$promise.then(function() {
+	    scope.style = scope.beerStyles.filter(function(style) {
+		return style.id === scope.beer.style;
+	    })[0];
+	});
 	// Handler for checking and adding a new item to the order
 	scope.addToOrder = function() {
 	    currentOrder.add(scope.beer, scope.quantity);
@@ -86,47 +62,26 @@ angular.module(
     };
 }])
 
+// Directive to show a detail product page for a single beer
 .directive('beerDetail', ['$location', 'currentOrder', function($location, currentOrder) {
-    var breweries = [
-	{
-	    id: 1,
-	    name: 'Bell\'s Brewery',
-	    city: 'Kalamazoo',
-	    state: 'Michigan',
-	    description: 'Hello, there Kalamazoo'
-	},
-	{
-	    id: 2,
-	    name: 'Founder\'s',
-	    city: 'Grand Rapids',
-	    state: 'Michigan',
-	    description: 'It\'s grand!!'
-	}
-    ];
-    var styles = [
-	{
-	    id: 1,
-	    short_name: 'IPA',
-	    long_name: 'India pale ale',
-	    description: 'A light, refreshing ale but very heavy on bittering hops'
-	},
-	{
-	    id: 2,
-	    short_name: 'Scotch ale',
-	    long_name: null,
-	    description: 'A very flavorful ale with strong malty characters'
-	}
-    ];
     function link(scope, elem, attrs) {
-	scope.brewery = breweries.filter(function(brewery) {
-	    return brewery.id === scope.beer.brewery;
-	})[0];
-	scope.style = styles.filter(function(style) {
-	    return style.id === scope.beer.style;
-	})[0];
+	// Get this beer's brewery and style objects
+	scope.$watch('beer', function(newBeer) {
+	    console.log(scope.beer);
+	    if (newBeer !== undefined) {
+		scope.breweries.$promise.then(function() {
+		    scope.brewery = scope.breweries.filter(function(brewery) {
+			return brewery.id === scope.beer.brewery;
+		    })[0];
+		});
+		scope.beerStyles.$promise.then(function() {
+		    scope.style = scope.beerStyles.filter(function(style) {
+			return style.id === scope.beer.style;
+		    })[0];
+		});
+	    }
+	});
 	scope.addToOrder = function() {
-	    console.log('hello');
-	    console.log(scope.addForm);
 	    currentOrder.add(scope.beer, scope.quantity);
 	    $location.path('/beer/');
 	};

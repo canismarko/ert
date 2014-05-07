@@ -2,3 +2,4 @@ django>=1.6
 djangorestframework
 django-summernote
 Pillow
+django-debug-toolbar

@@ -28,11 +28,14 @@
       </form>
     </div><!-- /.add-control -->
     <div class="characteristics">
-      <p>{{ 'BEER_DETAIL.STYLE' | translate }} {{ style.long_name }}</p>
+      <p>
+	{{ 'BEER_DETAIL.STYLE' | translate }}
+	{{ 'BEER_DETAIL.STYLE_NAME' | translate:style }}
+      </p>
       <p>{{ 'BEER_DETAIL.STOCK' | translate }}
-	<span ng-show="beer.stock > 0" ng-class="stockClasses">
-	  {{ currentBeer.stock }}</span>
-	<span ng-show="beer.stock <= 0" class="text-danger" translate>
+	<span ng-show="beer.stock > 0">
+	  {{ beer.stock }}</span>
+	<span ng-show="beer.stock <= 0" class="text-warning" translate>
 	  BEER_STORE.OUT_OF_STOCK</span>
       </p>
       <p>{{ 'BEER_DETAIL.ABV' | translate }} {{ beer.abv }}%</p>
@@ -40,11 +43,11 @@
       <p>{{ 'BEER_DETAIL.PRICE' | translate }} {{ beer.price }}</p>
     </div>
 
-    <p class="description">{{ beer.detail }}</p>
+    <p class="description">{{ 'BEER_DETAIL.DESCRIPTION' | translate:beer }}</p>
   </div>
 
   <div class="col-md-6 col-md-pull-6">
-    <img src="{{ beer.picture }}"
+    <img src="/media/{{ beer.picture }}"
 	 class="img-responsive"
 	 alt="Photo of {{ beer.name }}" />
   </div>

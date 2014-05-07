@@ -1,0 +1,99 @@
+[
+{
+    "pk": 1, 
+    "model": "store.beer", 
+    "fields": {
+        "picture": "beer/caldera-ipa-picture.jpg", 
+        "style": 2, 
+        "name": "Caldera IPA", 
+        "price": "100", 
+        "thumbnail": "beer/caldera-ipa-thumbnail.png", 
+        "color_srm": 10, 
+        "description_en": "Brewed with plenty of flavor and an assertive hop profile", 
+        "brewery": 2, 
+        "detail_zh_TW": "", 
+        "abv": "6.1", 
+        "description_zh_TW": "", 
+        "detail_en": "An American-style India Pale Ale brewed with plenty of body and an assertive hop profile. \r\nGrist: Premium Two Row, Munich, Crystal \r\nHops: Amarillo, Centennial and Simcoe \r\nOriginal gravity: 1.057", 
+        "ibu": 94
+    }
+},
+{
+    "pk": 2, 
+    "model": "store.beer", 
+    "fields": {
+        "picture": "beer/caldera-ashland-picture.jpg", 
+        "style": 3, 
+        "name": "Ashland Amber", 
+        "price": "90", 
+        "thumbnail": "beer/caldera-ashland-thumbnail.jpg", 
+        "color_srm": 11, 
+        "description_en": "A crisp, well-balanced, refreshing amber. Simplicity is the key to this recipe.", 
+        "brewery": 2, 
+        "detail_zh_TW": "", 
+        "abv": "5.4", 
+        "description_zh_TW": "", 
+        "detail_en": "", 
+        "ibu": 24
+    }
+},
+{
+    "pk": 2, 
+    "model": "store.brewery", 
+    "fields": {
+        "description_zh_TW": "", 
+        "city": "Ashland", 
+        "state": "Oregon", 
+        "name": "Caldera", 
+        "description_en": "Caldera Brewing Company was incorporated March 12, 1996. The first brew was July 4, 1997 and the first keg sold was August 28, 1997. Caldera is distributed by Summit Beverage in Southern Oregon, Big Foot Beverages in the Roseburg/Southern Coast area and Point Blank Distributing in Portland, Eugene, Bend and the Northern Coast area."
+    }
+},
+{
+    "pk": 2, 
+    "model": "store.style", 
+    "fields": {
+        "long_name_en": "India Pale Ale", 
+        "short_name_zh_TW": "IPA", 
+        "long_name_zh_TW": "India Pale Ale", 
+        "family": 2, 
+        "short_name_en": "IPA"
+    }
+},
+{
+    "pk": 3, 
+    "model": "store.style", 
+    "fields": {
+        "long_name_en": "Amber Ale", 
+        "short_name_zh_TW": "\u7425\u73c0\u5564\u9152", 
+        "long_name_zh_TW": "\u7425\u73c0\u5564\u9152", 
+        "family": 2, 
+        "short_name_en": "Amber Ale"
+    }
+},
+{
+    "pk": 2, 
+    "model": "store.stylefamily", 
+    "fields": {
+        "name_zh_TW": "Ale", 
+        "name_en": "Ale"
+    }
+},
+{
+    "pk": 1, 
+    "model": "store.supplyunit", 
+    "fields": {
+        "order_date": "2014-05-07T15:40:52Z", 
+        "beer": 1, 
+        "quantity": 5
+    }
+},
+{
+    "pk": 2, 
+    "model": "store.supplyunit", 
+    "fields": {
+        "order_date": "2014-05-07T15:41:18Z", 
+        "beer": 1, 
+        "quantity": 20
+    }
+}
+]

@@ -15,7 +15,7 @@
       <td>
 	<a href="/beer/{{ beer.id }}/{{ beer.name | slugify }}/"
 	   title="Details for {{ beer.name }}">
-	  <img src="{{ beer.thumbnail }}" alt="{{ beer.name }}" />
+	  <img src="/media/{{ beer.thumbnail }}" alt="{{ beer.name }}" />
 	</a>
       </td>
       <td>
@@ -24,16 +24,16 @@
 	  <h1 class="beer-name">{{ beer.name }}</h1>
 	</a>
 	<span class="brewery">
-	  {{ style.short_name }}
+	  {{ 'BEER_STORE.STYLE' | translate:style }}
 	  {{ 'BEER_STORE.BREWERY' | translate:brewery }}
 	</span>
       </td>
-      <td>{{ beer.description }}
+      <td>{{ 'BEER_STORE.DESCRIPTION' | translate:beer }}
 	<span class="text-warning" ng-show="beer.stock <= 0">
 	  [{{ 'BEER_STORE.OUT_OF_STOCK' | translate }}]</span>
       </td>
       <td>
-	{{ beer.price }}
+	{{ beer.price }} {{ 'BEER_STORE.CURRENCY' | translate }}
       </td>
       <td>
 	<form class="form-inline" novalidate>

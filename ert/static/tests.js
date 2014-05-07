@@ -56,12 +56,57 @@ describe('the currentOrder factory object', function() {
 
 })
 
+describe("the beerStore controller", function() {
+    var $location, $controller, $rootScope, $httpBackend;
+    beforeEach(module('ertMain'));
+    beforeEach(inject(function($injector) {
+	$location = $injector.get('$location');
+	$controller = $injector.get('$controller');
+	$rootScope = $injector.get('$rootScope');
+	$httpBackend = $injector.get('$httpBackend');
+	$httpBackend.whenGET('/static/l10n.en.json').respond(200, '');
+	$httpBackend.expectGET('/api/store/beers').respond(200, [
+	    {id: 1},
+	    {id: 2},
+	]);
+	$httpBackend.whenGET('/api/store/breweries').respond(200, []);
+	$httpBackend.whenGET('/api/store/beerstyles').respond(200, []);
+    }));
+    it("sets the beer object", function() {
+	$location.path('/beer/1/caldera-ipa');
+	$controller('beerStore', {$scope: $rootScope,
+				  $routeParams: {beerId: "1"}
+				 });
+	$httpBackend.flush();
+	expect($rootScope.beer.id).toEqual(1);
+    });
+});
+
 describe("the beerRow directive", function() {
-    var $compile, $rootScope, element, currentOrder;
-    beforeEach(module('ertDirectives'));
+    var $compile, $rootScope, $resource, $httpBackend, element, currentOrder;
+    beforeEach(module('ertDirectives', 'ngResource'));
     beforeEach(inject(function($injector) {
 	$compile = $injector.get('$compile');
 	$rootScope = $injector.get('$rootScope');
+	$resource = $injector.get('$resource');
+	$httpBackend = $injector.get('$httpBackend');
+	$rootScope.beer = {
+	    id: 1,
+	    style: 1,
+	    brewery: 1
+	};
+	$httpBackend.expectGET('/api/store/breweries')
+	    .respond(200, [
+	    {id: 1},
+	    {id: 2}
+	]);
+	$rootScope.breweries = $resource('/api/store/breweries/').query();
+	$httpBackend.expectGET('/api/store/beerstyles')
+	    .respond(200, [
+	    {id: 1},
+	    {id: 2}
+	]);
+	$rootScope.beerStyles = $resource('/api/store/beerstyles/').query();
 	$rootScope.beer = {
 	    id: 1,
 	    style: 1,
@@ -86,21 +131,37 @@ describe("the beerRow directive", function() {
 	    expect($rootScope.quantity).toBe(undefined);
 	});
     });
-    it("fetches the beer's style", function() {
+    it("sets the beer's style", function() {
+	$httpBackend.flush();
 	expect($rootScope.style.id).toEqual($rootScope.beer.style);
     });
-    it("fetches the beer's brewery", function() {
+    it("sets the beer's brewery", function() {
+	$httpBackend.flush();
 	expect($rootScope.brewery.id).toEqual($rootScope.beer.brewery);
     });
 });
 
 describe("the beerDetails directive", function() {
-    var $compile, $rootScope, $location, element, currentOrder;
-    beforeEach(module('ertDirectives'));
+    var $compile, $rootScope, $location, $resource, $httpBackend, element, currentOrder;
+    beforeEach(module('ertDirectives', 'ngResource'));
     beforeEach(inject(function($injector) {
 	$location = $injector.get('$location');
 	$compile = $injector.get('$compile');
 	$rootScope = $injector.get('$rootScope');
+	$resource = $injector.get('$resource');
+	$httpBackend = $injector.get('$httpBackend');
+	$httpBackend.expectGET('/api/store/breweries')
+	    .respond(200, [
+	    {id: 1},
+	    {id: 2}
+	]);
+	$rootScope.breweries = $resource('/api/store/breweries/').query();
+	$httpBackend.expectGET('/api/store/beerstyles')
+	    .respond(200, [
+	    {id: 1},
+	    {id: 2}
+	]);
+	$rootScope.beerStyles = $resource('/api/store/beerstyles/').query();
 	$rootScope.beer = {
 	    id: 1,
 	    style: 1,
@@ -127,6 +188,23 @@ describe("the beerDetails directive", function() {
 	    expect($location.path()).toEqual('/beer/');
 	});
     });
-    it("fetches the beer's style");
-    it("fetches the beer's brewery");
+    it("sets the beer's style", function() {
+	$rootScope.$digest();
+	$httpBackend.flush();
+	expect($rootScope.style.id).toEqual($rootScope.beer.style);
+    });
+    it("sets the beer's brewery", function() {
+	$httpBackend.flush();
+	expect($rootScope.brewery.id).toEqual($rootScope.beer.brewery);
+    });
+    it("$watches the beer property", function() {
+	$httpBackend.flush();
+	$rootScope.beer = {
+	    id: 2,
+	    style: 2,
+	    brewery: 2
+	};
+	$rootScope.$digest();
+	expect($rootScope.brewery.id).toEqual(2);
+    });
 });

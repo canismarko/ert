@@ -1,7 +1,8 @@
 "use strict";
 
 var ertMain = angular.module(
-    'ertMain', ['pascalprecht.translate', 'ngRoute', 'ngAnimate', 'ngCookies',
+    'ertMain', ['pascalprecht.translate',
+		'ngRoute', 'ngAnimate', 'ngCookies', 'ngResource',
 		'ertDirectives', 'ertFilters', 'ertServices']
 )
 
@@ -89,49 +90,33 @@ var ertMain = angular.module(
     };
 }]);
 
-ertMain.controller('beerStore', ['$scope', '$routeParams', 'currentOrder', function($scope, $routeParams, currentOrder) {
-    $scope.beerList = [
-	{
-	    id: 1,
-	    thumbnail: '/media/beer/two-hearted-thumbnail.jpg',
-	    brewery: 1,
-	    name: 'Two-hearted',
-	    description: 'A floral IPA with a hint of citrus',
-	    style: 1,
-	    abv: 7.0,
-	    stock: 0,
-	    price: 120,
-	},
-	{
-	    id: 2,
-	    thumbnail: '/media/beer/dirty-bastard.jpg',
-	    brewery: 2,
-	    name: 'Dirty Bastard',
-	    description: 'A scotch ale, heavy on malt character',
-	    style: 2,
-	    abv: 8.5,
-	    stock: 100,
-	    price: 135,
-	}
-    ];
+ertMain.controller('beerStore', ['$scope', '$routeParams', '$resource', 'currentOrder', function($scope, $routeParams, $resource, currentOrder) {
+    // Define API endpoints
+    var Beer = $resource(
+	'/api/store/beers/:beerId/',
+	{beerId: '@id'}
+    );
+    var Brewery = $resource(
+	'/api/store/breweries/:id/',
+	{id: '@id'}
+    );
+    var BeerStyle = $resource(
+	'/api/store/beerstyles/:id/',
+	{id: '@id'}
+    );
+    // Get data from API endpoints
+    $scope.beerList = Beer.query();
+    $scope.breweries = Brewery.query();
+    $scope.beerStyles = BeerStyle.query();
+    // If detail page, get beer object
     if ($routeParams.beerId) {
-	$scope.beer = {
-	    id: 1,
-	    picture: '/media/beer/two-hearted-full.png',
-	    brewery: 1,
-	    name: 'Two-hearted',
-	    description: 'A floral IPA with a hint of citrus',
-	    detail: 'Bell\'s Two Hearted Ale is defined by its intense hop aroma and malt balance. Hopped exclusively with the Centennial hop varietal from the Pacific Northwest, massive additions in the kettle and again in the fermenter lend their characteristic grapefruit and pine resin aromas. A significant malt body balances this hop presence; together with the signature fruity aromas of Bell\'s house yeast, this leads to a remarkably drinkable American-style India Pale Ale.',
-	    style: 1,
-	    abv: 7.0,
-	    ibu: 55,
-	    stock: 0,
-	    price: 120,
-	};
-	$scope.stockClasses = {
-	    'text-success': $scope.beer.stock > 20,
-	    'text-warning': $scope.beer.stock <= 20
-	}
+	var targetBeerId = parseInt($routeParams.beerId, 10);
+	$scope.beerList.$promise.then(function() {
+	    $scope.beer = $scope.beerList.filter(function(beer) {
+		return beer.id === targetBeerId;
+	    })[0];
+	    console.log($scope.beer);
+	});
     }
     // Persistent local storage for the user's shopping cart
     $scope.currentOrder = currentOrder;
