@@ -24,6 +24,7 @@ angular.module('ertServices', ['LocalStorageModule'])
     };
     // Method removes a specific product from the order
     order.remove = function(beer) {
+	console.log(beer);
 	var targetProducts, i, idx;
 	targetProducts = this.filter(function(listItem) {
 	    return listItem.beer.id === beer.id;

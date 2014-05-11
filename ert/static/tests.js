@@ -208,3 +208,37 @@ describe("the beerDetails directive", function() {
 	expect($rootScope.brewery.id).toEqual(2);
     });
 });
+
+describe('the checkoutForm directive', function() {
+    var $compile, $rootScope, $httpBackend, element;
+    beforeEach(module('ertDirectives', 'ngResource'));
+    beforeEach(inject(function($injector) {
+	$compile = $injector.get('$compile');
+	$rootScope = $injector.get('$rootScope');
+	$httpBackend = $injector.get('$httpBackend');
+	$rootScope.order = {
+	    name: 'Joe Merrell',
+	    address: 'Candy Land'
+	};
+	$rootScope.currentOrder = [
+	    {beer: 1, quantity: 10},
+	    {beer: 2, quantity: 30}
+	];
+	$rootScope.form = {
+	    $valid: true
+	};
+	element = $compile('<div class="checkout-form"></div>')($rootScope);
+    }));
+    afterEach(function() {
+	$httpBackend.verifyNoOutstandingExpectation();
+    });
+    it('submits the current order items and details', function() {
+	var scope = element.scope();
+	// Define expected
+	$httpBackend.expectPOST('/api/store/orders/', {
+	    order_data: $rootScope.order,
+	    order_items: $rootScope.currentOrder
+	}).respond(200);
+	scope.submitOrder();
+    });
+});

@@ -9,35 +9,7 @@
 	  {{ 'BEER_STORE.CART.TITLE' | translate }}
 	</h4>
       </div>
-      <div class="modal-body">
-	<div class="alert-empty" ng-show="currentOrder.length === 0" translate>
-	  BEER_STORE.CART.EMPTY_MESSAGE
-	</div>
-	<table class="table table-hover" ng-show="currentOrder.length > 0">
-	  <tr>
-	    <th translate>BEER_STORE.CART.TH_BEER</th>
-	    <th translate>BEER_STORE.CART.TH_UNITPRICE</th>
-	    <th>&nbsp;</th>
-	    <th translate>BEER_STORE.CART.TH_QUANTITY</th>
-	    <th>&nbsp;</th>
-	    <th translate>BEER_STORE.CART.TH_TOTALPRICE</th>
-	  </tr>
-	  <tr ng-repeat="orderItem in currentOrder track by $index">
-	    <td>
-	      <button class="close" aria-hidden="true"
-		      ng-click="removeFromOrder(orderItem)">&times;</button>
-	      {{ orderItem.beer.name }}
-	    </td>
-	    <td>{{ orderItem.beer.price }}</td>
-	    <td>&times;</td>
-	    <td>{{ orderItem.quantity }}</td>
-	    <td>=</td>
-	    <td>{{ orderItem.beer.price * orderItem.quantity }}</td>
-	  </tr>
-	</table>
-	<p class="totals" ng-show="currentOrder.length > 0">
-	  {{ 'BEER_STORE.CART.TOTAL' | translate:currentOrder.totals }}
-	</p>
+      <div class="modal-body" ng-include="'/static/order-table.html'">
       </div>
       <div class="modal-footer">
 	<button type="button" class="btn btn-link"
@@ -46,11 +18,12 @@
 		translate>BEER_STORE.CART.RESET</button>
         <button type="button" class="btn btn-default"
 		data-dismiss="modal" translate>CLOSE_BUTTON</button>
-        <button type="button" class="btn btn-primary"
+        <button type="submit" class="btn btn-primary"
+		ng-click="checkout()"
 		ng-disabled="currentOrder.length < 1">
 	  {{ 'BEER_STORE.CART.SUBMIT' | translate }}
 	  <span class="glyphicon glyphicon-chevron-right"></span>
-	</button>
+	</a>
       </div>
     </div>
   </div>

@@ -91,3 +91,65 @@ angular.module(
 	restrict: 'C'
     };
 }])
+
+.directive('beerCartModal', ['$location', function($location) {
+    function link(scope, elem, attrs) {
+	// Handler for the "checkout" button: redirects to the checkout page
+	scope.checkout = function() {
+	    $('#cartModal').modal('hide');
+	    $location.path('/beer/checkout/');
+	};
+    }
+    return {
+	link: link,
+	restrict: 'AC'
+    };
+}])
+
+.directive('checkoutForm', ['$http', 'currentOrder', function($http, currentOrder) {
+    function link(scope, elem, attrs) {
+
+	// Handler for the submit button: validates and POSTs checkout form
+	scope.submitOrder = function() {
+	    var data;
+	    elem.addClass('dirty');
+	    if (scope.form.$valid) {
+		// Prepare POST data
+		data = {
+		    order_data: scope.order,
+		    order_items: scope.currentOrder
+		};
+		$http.post('/api/store/orders/', data);
+	    }
+	};
+	scope.reset = function() {
+	    scope.form.$setPristine();
+	    elem.removeClass('dirty');
+	    // Blank object to hold form data
+	    scope.order = {
+		f_name: "",
+		l_name: "",
+		phone: "",
+		shipping_address: "",
+		email: "",
+		company_name: ""
+	    };
+	};
+	// Disable the form if the shopping cart is empty
+	scope.$watch(
+	    function() {return currentOrder.length},
+	    function(newOrderLength) {
+		var fieldset = elem.find('fieldset');
+		if (newOrderLength > 0) {
+		    fieldset.removeAttr('disabled');
+		} else {
+		    fieldset.attr('disabled', 'disabled');
+		}
+	    }
+	);
+    }
+    return {
+	link: link,
+	restrict: 'AC'
+    };
+}]);

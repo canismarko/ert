@@ -1,0 +1,33 @@
+<div class="alert-empty" ng-show="currentOrder.length === 0" translate>
+  BEER_STORE.CART.EMPTY_MESSAGE
+</div>
+<table class="order-table" ng-show="currentOrder.length > 0">
+  <tr>
+    <th translate>BEER_STORE.CART.TH_BEER</th>
+    <!-- <th translate>BEER_STORE.CART.TH_UNITPRICE</th> -->
+    <!-- <th>&nbsp;</th> -->
+    <th translate>BEER_STORE.CART.TH_QUANTITY</th>
+    <!-- <th>&nbsp;</th> -->
+    <!-- <th translate>BEER_STORE.CART.TH_TOTALPRICE</th> -->
+  </tr>
+  <tr ng-repeat="orderItem in currentOrder track by $index">
+    <td>
+      <button class="close" aria-hidden="true"
+	      ng-click="currentOrder.remove(orderItem.beer)">&times;</button>
+      {{ orderItem.beer.name }}
+    </td>
+    <!-- <td>{{ orderItem.beer.price }}</td> -->
+    <!-- <td>&times;</td> -->
+    <td><input ng-model="orderItem.quantity"
+	       class="item-quantity"
+	       type="number"
+	       min="0"
+	       >
+      </input></td>
+    <!-- <td>=</td> -->
+    <!-- <td>{{ orderItem.beer.price * orderItem.quantity }}</td> -->
+  </tr>
+</table>
+<p class="totals" ng-show="currentOrder.length > 0">
+  {{ 'BEER_STORE.CART.TOTAL' | translate:currentOrder.totals }}
+</p>

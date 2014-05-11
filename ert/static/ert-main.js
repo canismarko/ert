@@ -22,6 +22,10 @@ var ertMain = angular.module(
 	    templateUrl: '/static/beer-detail.html',
 	    controller: 'beerStore'
 	})
+	.when('/beer/checkout/', {
+	    templateUrl: '/static/checkout.html',
+	    controller: 'beerStore'
+	})
 	.when('/about/', {
 	    templateUrl: '/static/about.html'
 	})
