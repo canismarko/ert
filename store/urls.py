@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 
-from store.views import BeerApi, BreweryApi, BeerStyleApi
+from store.views import BeerApi, BreweryApi, BeerStyleApi, OrderApi
 
 urlpatterns = patterns(
     '',
@@ -12,4 +12,6 @@ urlpatterns = patterns(
         name='BreweryApi'),
     url(r'^beerstyles(?:/(?P<pk>\d+))?/?$', BeerStyleApi.as_view(),
         name='BeerStyleApi'),
+    url(r'^orders/?$', OrderApi.as_view(),
+        name='OrderApi'),
 )

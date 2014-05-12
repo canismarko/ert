@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from django.db.models import Sum
 from django.test import TestCase
 
-from store.models import Beer, Brewery, Style, SupplyUnit
+from store.models import Beer, Brewery, Style, SupplyUnit, Order, OrderItem
 from store.serializers import BeerListSerializer
 
 class BeerViewTests(TestCase):
@@ -89,3 +89,77 @@ class BeerSerializerTests(TestCase):
             2,
             hit_db
         )
+
+
+class OrdersApi(TestCase):
+    """
+    Test that the front-end can submit a post request with a new beer order.
+    """
+    fixtures = ['store-data']
+    def setUp(self):
+        self.url = reverse('OrderApi')
+        self.dummy_order = {
+            'order_data': {
+                'company_name': 'Nuclear Power Plant',
+                'email': 'homer@example.com',
+                'f_name': 'Homer',
+                'l_name': 'Simpson',
+                'phone': '1-800-555-5555',
+                'shipping_address': '742 Evergreen Trc\nSpringfield NA 99999',
+            },
+            'order_items': [
+                {
+                    'beer': {'id': 1},
+                    'quantity': 3
+                }
+            ]
+        }
+    def test_creates_order(self):
+        response = self.client.post(self.url,
+                                    json.dumps(self.dummy_order),
+                                    content_type="application/json")
+        r = json.loads(response.content)
+        # Find the saved order instance
+        order = Order.objects.get(pk=r['order_id'])
+        self.assertEqual(
+            order.company_name,
+            self.dummy_order['order_data']['company_name']
+        )
+    def test_creates_order_items(self):
+        response = self.client.post(self.url,
+                                    json.dumps(self.dummy_order),
+                                    content_type="application/json")
+        r = json.loads(response.content)
+        # Find the saved OrderItem instances
+        saved_items = OrderItem.objects.filter(order=r['order_id'])
+        self.assertEqual(
+            saved_items.count(),
+            len(self.dummy_order['order_items'])
+        )
+    def test_rejects_empty_order(self):
+        empty_order = {
+            'order_data': self.dummy_order['order_data'],
+            'order_items': []
+        }
+        response = self.client.post(self.url,
+                                    json.dumps(empty_order),
+                                    content_type="application/json")
+        r = json.loads(response.content)
+        self.assertEqual(
+            response.status_code,
+            400,
+        )
+        self.assertEqual(
+            r['reason'],
+            'order_items cannot be empty'
+        )
+        self.assertEqual(
+            Order.objects.all().count(),
+            0
+        )
+
+    def test_sends_admin_email(self):
+        assert False, 'Test not written'
+
+    def test_sends_confirmation_email(self):
+        assert False, 'Test not written'

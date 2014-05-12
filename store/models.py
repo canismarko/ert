@@ -115,4 +115,4 @@ class OrderItem(models.Model):
     """
     order = models.ForeignKey('Order')
     beer = models.ForeignKey('Beer')
-    quanitity = models.IntegerField()
+    quantity = models.IntegerField()
