@@ -1,18 +1,20 @@
 import json
 
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 from django.http import HttpResponse
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
 from ert import settings
+from ert.models import ContactRequest
 
-def contact_form(request):
-    data = json.loads(request.body)
-    message_str = 'From: {name} ({email})\nSubject: {subject}\n\n{body}'
-    message = message_str.format(**data)
-    send_mail(
-        'Website contact',
-        message,
-        data['email'],
-        settings.CONTACT_EMAILS
-    )
-    return HttpResponse('', content_type='application/json')
+class ContactView(APIView):
+    def post(self, request):
+        data = request.DATA
+        # Create a database entry for this contact
+        contact_request = ContactRequest(**data)
+        contact_request.save()
+        # Send an e-mail to ERT staff and sender about the contact
+        contact_request.notify_ert()
+        contact_request.send_confirmation()
+        return Response()

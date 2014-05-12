@@ -5,12 +5,14 @@ from django.contrib import admin
 from django.contrib.staticfiles import views
 from django.views.generic import TemplateView
 
+from ert.views import ContactView
+
 admin.autodiscover()
 
 urlpatterns = patterns(
     '',
     # API for submitting contact form
-    url(r'^contact-message/$', 'ert.views.contact_form',
+    url(r'^contact-message/$', ContactView.as_view(),
         name='contact'),
 
     # API for beer store

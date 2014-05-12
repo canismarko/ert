@@ -61,7 +61,7 @@ var ertMain = angular.module(
 }])
 
 // Controller for the contact us form that appears around the site
-.controller('contactForm', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
+.controller('contactForm', ['$scope', '$http', '$timeout', '$translate', function($scope, $http, $timeout, $translate) {
     $scope.reset = function() {
 	$scope.message = {
 	    name: '',
@@ -77,6 +77,10 @@ var ertMain = angular.module(
 	$scope.form.$setDirty();
 	if ($scope.form.$valid) {
 	    $scope.status = 'pending';
+	    // Get the translated subject
+	    $translate(data.subject).then(function(subject) {
+		data.subject = subject;
+	    });
 	    $http.post('/contact-message/', data)
 		.success(function() {
 		    // Notify the user of success =)

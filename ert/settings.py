@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     # 'debug_toolbar',
     'rest_framework',
     'django_summernote',
+    'ert',
     'blog',
     'store',
 )
@@ -96,6 +97,9 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'ert/static/')]
 # User-uploaded files
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'
+
+# Default address for sending mail
+CONTACT_EMAILS = []
 
 # Allow deployment to override local setting
 try:
