@@ -63,6 +63,12 @@ var ertMain = angular.module(
 // Controller for the contact us form that appears around the site
 .controller('contactForm', ['$scope', '$http', '$timeout', '$translate', function($scope, $http, $timeout, $translate) {
     $scope.reset = function() {
+	// Reset form to its default state
+	$scope.status = null;
+	$scope.isDirty = false;
+	if ($scope.form) {
+	    $scope.form.$setPristine();
+	}
 	$scope.message = {
 	    name: '',
 	    email: '',
@@ -73,7 +79,8 @@ var ertMain = angular.module(
     $scope.reset();
     $scope.submit = function(data) {
 	// Validate form and submit
-	$scope.form.email.$dirty = true;
+	// $scope.form.email.$dirty = true;
+	$scope.isDirty = true;
 	$scope.form.$setDirty();
 	if ($scope.form.$valid) {
 	    $scope.status = 'pending';

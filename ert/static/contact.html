@@ -13,6 +13,7 @@
   <!-- Form for general inquiries -->
   <div class="col-md-6">
     <form role="form" class="contact-form form-horizontal"
+	  ng-class="{dirty: isDirty}"
 	  name="form" ng-controller="contactForm" novalidate>
       <div class="form-group">
 	<label for="contactName" class="control-label" translate>CONTACT_FORM.NAME_LABEL</label>
@@ -26,15 +27,19 @@
 	<div class="form-input">
 	  <input type="email" id="contactEmail" name="email" required ng-model="message.email"
 		 placeholder="{{ 'CONTACT_FORM.EMAIL_PLACEHOLDER' | translate }}" />
+	  <ul class="errors">
+	    <li class="error-required" translate>CONTACT_FORM.ERROR_REQUIRED</li>
+	    <li class="error-email" translate>FORMS.INVALID_EMAIL</li>
+	  </ul>
 	</div>
       </div>
-      <div class="error form-group" ng-show="form.email.$invalid">
-	<div class="control-label"></div>
-	<div class="form-input">
-	  <div ng-show="form.email.$error.required" translate>CONTACT_FORM.ERROR_REQUIRED</div>
-	  <div ng-show="form.email.$error.email" translate>CONTACT_FORM.EMAIL_INVALID</div>
-	</div>
-      </div>
+      <!-- <div class="error form-group" ng-show="form.email.$invalid"> -->
+      <!-- 	<div class="control-label"></div> -->
+      <!-- 	<div class="form-input"> -->
+      <!-- 	  <div ng-show="form.email.$error.required" translate>CONTACT_FORM.ERROR_REQUIRED</div> -->
+      <!-- 	  <div ng-show="form.email.$error.email" translate>CONTACT_FORM.EMAIL_INVALID</div> -->
+      <!-- 	</div> -->
+      <!-- </div> -->
       <div class="form-group">
 	<label for="contactSubject" class="control-label" translate>CONTACT_FORM.SUBJECT_LABEL</label>
 	<div class="form-input">
@@ -56,7 +61,7 @@
 	<div class="control-label"></div>
 	<div class="form-input">
 	  <button type="submit" class="btn btn-primary"
-		  ng-click="submit(message)" ng-disabled="form.$invalid" translate>
+		  ng-click="submit(message)" translate>
 	    CONTACT_FORM.SEND_BUTTON
 	  </button>
 	  <button class="btn btn-link"
