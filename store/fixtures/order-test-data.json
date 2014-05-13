@@ -1,0 +1,34 @@
+[
+{
+    "pk": 1, 
+    "model": "store.order", 
+    "fields": {
+        "status": "A", 
+        "l_name": "Simpson", 
+        "timestamp": "2014-05-13T15:04:36.763Z", 
+        "f_name": "Homer", 
+        "phone": "939-555-0113", 
+        "company_name": "Springfield Nuclear Power Plant", 
+        "shipping_address": "742 Evergreen Terrace\r\nSpringfield, NA, 99999", 
+        "email": "homer@nuclearpower.com"
+    }
+},
+{
+    "pk": 1, 
+    "model": "store.orderitem", 
+    "fields": {
+        "beer": 1, 
+        "order": 1, 
+        "quantity": 15
+    }
+},
+{
+    "pk": 2, 
+    "model": "store.orderitem", 
+    "fields": {
+        "beer": 2, 
+        "order": 1, 
+        "quantity": 20
+    }
+}
+]

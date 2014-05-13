@@ -1,0 +1,16 @@
+A new order was submitted on {{ order.timestamp.date }}.
+
+Order details
+===
+Order ID: {{ order.id }}
+First name: {{ order.f_name }}
+Last name: {{ order.l_name }}
+Company: {{ order.company_name }}
+Time: {{ order.timestamp.time }} UTC
+Phone: {{ order.phone }}
+E-mail: {{ order.email }}
+
+Order items
+===
+{% for item in order.orderitem_set.all %}{{ item.quantity }} x {{ item.beer }}
+{% endfor %}

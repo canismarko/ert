@@ -1,0 +1,29 @@
+<p>Thank you for requesting a quote from East Road Trading Company</p>
+
+<p>
+  This quote is valid for 48 hours.
+  <strong>Please submit payment within 48 hours to secure these prices.</strong>
+</p>
+
+<table>
+  <tr>
+    <th>Cases</th>
+    <th>Beer</th>
+    <th>Price per Case</th>
+    <th>Total Price</th>
+  </tr>
+  {% for item in order.orderitem_set.all %}
+  <tr>
+    <td>{{ item.quantity }}</td>
+    <td>{{ item.beer }}</td>
+    <td>{{ item.beer.price }} TWD</td>
+    <td>{{ item.total_price }} TWD</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<h1 style="font-size: 18px">
+  Payment Instructions
+</h1>
+
+<p>Total: {{ order.total_price }} TWD</p>

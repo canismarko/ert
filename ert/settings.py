@@ -29,7 +29,6 @@ TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 ALLOWED_HOSTS = ['localhost']
 
 # Application definition
-
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
@@ -99,7 +98,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'
 
 # Default address for sending mail
-CONTACT_EMAILS = []
+CONTACT_EMAIL = ''
 
 # Allow deployment to override local setting
 try:

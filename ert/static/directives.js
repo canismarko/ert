@@ -106,7 +106,7 @@ angular.module(
     };
 }])
 
-.directive('checkoutForm', ['$http', 'currentOrder', function($http, currentOrder) {
+.directive('checkoutForm', ['$http', '$translate', 'currentOrder', function($http, $translate, currentOrder) {
     function link(scope, elem, attrs) {
 
 	// Handler for the submit button: validates and POSTs checkout form
@@ -115,6 +115,8 @@ angular.module(
 	    elem.addClass('dirty');
 	    if (scope.form.$valid) {
 		// Prepare POST data
+		console.log($translate.use());
+		scope.order.preferred_language = $translate.use();
 		data = {
 		    order_data: scope.order,
 		    order_items: scope.currentOrder

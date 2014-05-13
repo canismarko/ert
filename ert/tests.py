@@ -34,7 +34,7 @@ class ContactRequestModel(TestCase):
         msg = mail.outbox[0]
         self.assertEqual(
             msg.recipients(),
-            settings.CONTACT_EMAILS + [settings.CONTACT_EMAIL]
+            settings.CONTACT_CC + [settings.CONTACT_EMAIL]
         )
         self.assertEqual(
             msg.subject,

@@ -1,6 +1,11 @@
 from datetime import datetime as dt
 
+from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.db import models
+from django.template import Context
+from django.template.loader import get_template
+
+from ert import settings
 
 class Beer(models.Model):
     """
@@ -94,6 +99,7 @@ class Order(models.Model):
     shipping_address = models.TextField()
     email = models.EmailField(max_length=254)
     company_name = models.CharField(max_length=100, blank=True)
+    preferred_language = models.CharField(max_length=5, default="en")
     # Status handling
     PENDING = "A"
     APPROVED = "B"
@@ -101,6 +107,7 @@ class Order(models.Model):
     SHIPPED = "D"
     status = models.CharField(
         max_length=5,
+        default=PENDING,
         choices=[
             (PENDING, "Pending"),
             (APPROVED, "Awaiting Payment"),
@@ -109,6 +116,68 @@ class Order(models.Model):
         ]
     )
 
+    def from_email(self):
+        """
+        Parse the order data into a from_email string.
+        """
+        return "{f_name} {l_name} <{email}>".format(f_name=self.f_name,
+                                                   l_name=self.l_name,
+                                                   email=self.email)
+
+    def total_price(self):
+        price = 0
+        for item in self.orderitem_set.all():
+            price += item.total_price()
+        return price
+
+    def notify_ert(self):
+        """
+        Send an e-mail to East Road Trading staff notifying them of the order.
+        """
+        # Prepare the message body from templates
+        context = Context({'order': self})
+        template = get_template('email/order-notification.txt')
+        # Prepare and send the e-mail itself
+        email = EmailMessage(
+            from_email=self.from_email(),
+            to=[settings.CONTACT_EMAIL],
+            subject="New East Road Trading order",
+            cc=settings.CONTACT_CC,
+            body=template.render(context))
+        return email.send()
+
+    def send_confirmation(self):
+        """
+        Send a confirmation e-mail to the person requesting the order.
+        """
+        # Prepare the two bodies for a multi-part email
+        context = Context({'order': self})
+        template_txt = get_template('email/order-confirmation.txt')
+        template_html = get_template('email/order-confirmation.html')
+        # Send the actual confirmation e-mail
+        email = EmailMultiAlternatives(
+            to=[self.from_email()],
+            subject='Your order quote and payment instructions',
+            from_email=settings.CONTACT_EMAIL,
+            body=template_txt.render(context)
+        )
+        email.attach_alternative(template_html.render(context), 'text/html')
+        email.send()
+        return None
+
+    def __str__(self):
+        if self.company_name:
+            name_str = "[{status}] {f_name} {l_name} ({company}) - {time}"
+        else:
+            name_str = "[{status}] {f_name} {l_name} - {time}"
+        name = name_str.format(
+                status=self.get_status_display(),
+                f_name=self.f_name,
+                l_name=self.l_name,
+                company=self.company_name,
+                time=self.timestamp.date())
+        return name
+
 class OrderItem(models.Model):
     """
     A line-item for a customer's order.
@@ -116,3 +185,12 @@ class OrderItem(models.Model):
     order = models.ForeignKey('Order')
     beer = models.ForeignKey('Beer')
     quantity = models.IntegerField()
+
+    def total_price(self):
+        return self.beer.price * self.quantity
+
+    def __str__(self):
+        return "{quant} x {beer} for {order}".format(
+            quant=self.quantity,
+            beer=self.beer.__str__(),
+            order=self.order.__str__())

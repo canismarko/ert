@@ -1,9 +1,11 @@
 import json
 
+from django.core import mail
 from django.core.urlresolvers import reverse
 from django.db.models import Sum
 from django.test import TestCase
 
+from ert import settings
 from store.models import Beer, Brewery, Style, SupplyUnit, Order, OrderItem
 from store.serializers import BeerListSerializer
 
@@ -105,6 +107,7 @@ class OrdersApi(TestCase):
                 'f_name': 'Homer',
                 'l_name': 'Simpson',
                 'phone': '1-800-555-5555',
+                'preferred_language': 'zh_TW',
                 'shipping_address': '742 Evergreen Trc\nSpringfield NA 99999',
             },
             'order_items': [
@@ -114,6 +117,7 @@ class OrdersApi(TestCase):
                 }
             ]
         }
+
     def test_creates_order(self):
         response = self.client.post(self.url,
                                     json.dumps(self.dummy_order),
@@ -125,6 +129,15 @@ class OrdersApi(TestCase):
             order.company_name,
             self.dummy_order['order_data']['company_name']
         )
+        self.assertEqual(
+            order.status,
+            order.PENDING,
+        )
+        self.assertEqual(
+            order.preferred_language,
+            'zh_TW'
+        )
+
     def test_creates_order_items(self):
         response = self.client.post(self.url,
                                     json.dumps(self.dummy_order),
@@ -136,6 +149,7 @@ class OrdersApi(TestCase):
             saved_items.count(),
             len(self.dummy_order['order_items'])
         )
+
     def test_rejects_empty_order(self):
         empty_order = {
             'order_data': self.dummy_order['order_data'],
@@ -158,8 +172,63 @@ class OrdersApi(TestCase):
             0
         )
 
+
+class OrderModel(TestCase):
+    fixtures = ['store-data', 'order-test-data']
+    def setUp(self):
+        self.order = Order.objects.get(pk=1)
+
     def test_sends_admin_email(self):
-        assert False, 'Test not written'
+        with self.assertTemplateUsed('email/order-notification.txt'):
+            self.order.notify_ert()
+        self.assertEqual(
+            len(mail.outbox),
+            1,
+            'No messages sent'
+        )
+        # Check that the right fields are sent
+        msg = mail.outbox[0]
+        self.assertIn(
+            self.order.f_name,
+            msg.body,
+        )
+        self.assertIn(
+            self.order.l_name,
+            msg.body,
+        )
 
     def test_sends_confirmation_email(self):
-        assert False, 'Test not written'
+        with self.assertTemplateUsed('email/order-confirmation.txt'):
+            self.order.send_confirmation()
+        self.assertEqual(
+            len(mail.outbox),
+            1,
+            'No messages sent'
+        )
+        # Check email sender, recipient, etc
+        msg = mail.outbox[0]
+        self.assertEqual(
+            msg.recipients(),
+            [self.order.from_email()]
+        )
+        self.assertEqual(
+            msg.from_email,
+            settings.CONTACT_EMAIL
+        )
+        self.assertEqual(
+            msg.subject,
+            'Your order quote and payment instructions'
+        )
+
+    def test_sends_html_confirmation_email(self):
+        with self.assertTemplateUsed('email/order-confirmation.html'):
+            self.order.send_confirmation()
+
+    def test_from_email(self):
+        order = Order(f_name="Homer",
+                      l_name="Simpson",
+                      email="homer@example.com")
+        self.assertEqual(
+            order.from_email(),
+            "Homer Simpson <homer@example.com>"
+        )

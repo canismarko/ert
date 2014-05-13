@@ -67,6 +67,10 @@ class OrderApi(APIView):
                 new_item.quantity = item['quantity']
                 new_item.order = order
                 new_item.save()
+            # Send relevant emails
+            order.notify_ert()
+            order.send_confirmation()
+            # Send API response
             response_data = {
                 'status': 'success',
                 'order_id': order.id

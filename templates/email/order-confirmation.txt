@@ -1,0 +1,8 @@
+Thank you for requesting a quote with East Road Trading Company.
+
+Below you will find an order summary and instructions for submitting payment.
+
+If you did not place this request, please reply to this e-mail
+immediately and we will help resolve the issue.
+
+Name: {{ order.f_name }} {{ order.l_name }}
