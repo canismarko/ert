@@ -101,7 +101,8 @@
 	    "TH_BEER": "Beer",
 	    "TH_QUANTITY": "Cases",
 	    "TH_UNITPRICE": "Unit price",
-	    "TH_TOTALPRICE": "Price"
+	    "TH_TOTALPRICE": "Price",
+	    "BACKORDER": "Some portion of this item is on backorder"
 	}
     },
     "BEER_DETAIL": {

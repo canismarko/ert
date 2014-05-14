@@ -125,6 +125,8 @@ angular.module(
 		    .success(function() {
 			toaster.pop('clear');
 			toaster.pop('success', "Sent");
+			scope.reset();
+			currentOrder.reset();
 		    })
 		    .error(function() {
 			toaster.pop('clear');
