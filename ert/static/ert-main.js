@@ -61,7 +61,7 @@ var ertMain = angular.module(
 }])
 
 // Controller for the contact us form that appears around the site
-.controller('contactForm', ['$scope', '$http', '$timeout', '$translate', function($scope, $http, $timeout, $translate) {
+.controller('contactForm', ['$scope', '$http', '$timeout', '$translate', 'toaster', function($scope, $http, $timeout, $translate, toaster) {
     $scope.reset = function() {
 	// Reset form to its default state
 	$scope.status = null;
@@ -79,28 +79,31 @@ var ertMain = angular.module(
     $scope.reset();
     $scope.submit = function(data) {
 	// Validate form and submit
-	// $scope.form.email.$dirty = true;
 	$scope.isDirty = true;
 	$scope.form.$setDirty();
 	if ($scope.form.$valid) {
-	    $scope.status = 'pending';
+	    toaster.pop('info',
+			"We're delivering your message. Hang tight.",
+			"Sending",
+			{"timeOut": "0"});
 	    // Get the translated subject
 	    $translate(data.subject).then(function(subject) {
 		data.subject = subject;
 	    });
 	    $http.post('/contact-message/', data)
 		.success(function() {
-		    // Notify the user of success =)
-		    $scope.status = 'success';
-		    $timeout(function() {
-			// Hide status after a few seconds
-			$scope.reset();
-		    }, 5000);
+		    // Notify the user of success and reset the form
+		    toaster.pop('clear');
+		    toaster.pop('success', "Message sent. We'll get back to you soon.");
+		    $scope.reset();
 		})
 		.error(function() {
 		    // Notify the user of failure =(
-		    $scope.status = 'fail';
-		})
+		    toaster.pop('clear');
+		    toaster.pop('error',
+				"Something went wrong. Check your internet connection",
+				"Error");
+		});
 	}
     };
 }]);

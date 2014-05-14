@@ -56,4 +56,15 @@ angular.module('ertServices', ['LocalStorageModule'])
     };
     $rootScope.$watch(watcher, listener, true);
     return order;
+}])
+
+.factory('toaster', ['$translate', function($translate) {
+    var toaster;
+    // toaster is the object that interacts with the actual library
+    toaster = {};
+    toaster.pop = function(method, message, title, opts) {
+	// Call original toastr functions
+	toastr[method](message, title, opts);
+    };
+    return toaster;
 }]);
