@@ -2,7 +2,7 @@
 
 var ertMain = angular.module(
     'ertMain', ['pascalprecht.translate',
-		'ngRoute', 'ngAnimate', 'ngCookies', 'ngResource',
+		'ngRoute', 'ngAnimate', 'ngCookies', 'ngResource', 'ngSanitize',
 		'ertDirectives', 'ertFilters', 'ertServices']
 )
 
@@ -13,6 +13,10 @@ var ertMain = angular.module(
 	})
 	.when('/contact/', {
 	    templateUrl: '/static/contact.html',
+	})
+	.when('/blog/', {
+	    templateUrl: '/static/blog.html',
+	    controller: 'blog',
 	})
 	.when('/beer/', {
 	    templateUrl: '/static/beer-store.html',
@@ -106,6 +110,13 @@ var ertMain = angular.module(
 		});
 	}
     };
+}]);
+
+ertMain.controller('blog', ['$scope', '$resource', function($scope, $resource) {
+    var BlogPost;
+    BlogPost = $resource('/api/blog/posts/:blogId/',
+			{blogId: '@id'});
+    $scope.posts = BlogPost.query();
 }]);
 
 ertMain.controller('beerStore', ['$scope', '$routeParams', '$resource', 'currentOrder', function($scope, $routeParams, $resource, currentOrder) {

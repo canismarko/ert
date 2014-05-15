@@ -6,6 +6,7 @@ from django.contrib.staticfiles import views
 from django.views.generic import TemplateView
 
 from ert.views import ContactView
+from blog.views import BlogPostView
 
 admin.autodiscover()
 
@@ -17,6 +18,10 @@ urlpatterns = patterns(
 
     # API for beer store
     url(r'^api/store/', include('store.urls')),
+
+    # API for blog
+    url(r'^api/blog/posts/?$', BlogPostView.as_view(),
+        name='blog-posts'),
 
     # Static files for WYSIWYG admin editor
     url(r'^summernote', include('django_summernote.urls')),

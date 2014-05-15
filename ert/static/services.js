@@ -63,8 +63,10 @@ angular.module('ertServices', ['LocalStorageModule'])
     // toaster is the object that interacts with the actual library
     toaster = {};
     toaster.pop = function(method, message, title, opts) {
-	// Call original toastr functions
-	toastr[method](message, title, opts);
+	if (typeof toastr !== 'undefined') {
+	    // Call original toastr functions
+	    toastr[method](message, title, opts);
+	}
     };
     return toaster;
 }]);

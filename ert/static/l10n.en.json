@@ -80,6 +80,11 @@
 	"SUBMIT_BUTTON": "Submit",
 	"RESET_BUTTON": "Reset"
     },
+    "BLOG": {
+	"TITLE": "Beer Blog",
+	"POST_TITLE": "{{ title_en }}",
+	"POST_BODY": "{{ text_en }}"
+    },
     "BEER_STORE": {
 	"CURRENCY": "TWD",
 	"TITLE": "Beers We Carry",
