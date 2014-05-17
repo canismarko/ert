@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 'django_browserid',
     # 'debug_toolbar',
     'rest_framework',
     'django_summernote',
@@ -43,6 +44,10 @@ INSTALLED_APPS = (
     'blog',
     'store',
 )
+
+# AUTHENTICATION_BACKEND = [
+#     'django_browserid.auth.BrowserIDBackend',
+# ]
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -52,6 +57,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
+# Allow cross-origin frames for persona login
+SITE_URL = 'http://localhost:8000'
 
 ROOT_URLCONF = 'ert.urls'
 

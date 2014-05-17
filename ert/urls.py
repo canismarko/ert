@@ -1,3 +1,4 @@
+from django_browserid.admin import site as browserid_admin
 from django.conf import settings
 from django.conf.urls import patterns, include, url
 from django.conf.urls.static import static
@@ -9,6 +10,7 @@ from ert.views import ContactView
 from blog.views import BlogPostView
 
 admin.autodiscover()
+# browserid_admin.copy_registry(admin.site)
 
 urlpatterns = patterns(
     '',
@@ -34,7 +36,13 @@ urlpatterns = patterns(
     url(r'^test/jasmine/$', TemplateView.as_view(template_name='jasmine.html'),
         name='jasmine'),
 
+    # Admin site login
     url(r'^admin/', include(admin.site.urls)),
+
+    # Persona/BrowserID login
+    # url(r'^login-test/$', TemplateView.as_view(template_name='login.html')),
+    # (r'', include('django_browserid.urls')),
+    # url(r'^admin/', include(browserid_admin.urls)),
 
     # # Default entry point for all angular pages
     url(r'^', TemplateView.as_view(template_name='base.html'),

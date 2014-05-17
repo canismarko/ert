@@ -1,5 +1,7 @@
 django>=1.6
 djangorestframework
+django-browserid
+django-csp
 django-summernote
 Pillow
 django-debug-toolbar
