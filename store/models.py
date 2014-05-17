@@ -95,11 +95,18 @@ class Order(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     f_name = models.CharField(max_length=50)
     l_name = models.CharField(max_length=50)
-    phone = models.CharField(max_length=30)
+    phone = models.CharField(max_length=30, blank=True)
     shipping_address = models.TextField()
     email = models.EmailField(max_length=254)
     company_name = models.CharField(max_length=100, blank=True)
-    preferred_language = models.CharField(max_length=5, default="en")
+    # Language handling
+    ENGLISH = "en"
+    CHINESE = "zh_TW"
+    preferred_language = models.CharField(max_length=5, default=ENGLISH,
+                                          choices=[
+                                              (ENGLISH, "English"),
+                                              (CHINESE, "Chinese"),
+                                          ])
     # Status handling
     PENDING = "A"
     APPROVED = "B"
