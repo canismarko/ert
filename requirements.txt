@@ -1,7 +1,6 @@
 django>=1.6
 djangorestframework
-django-browserid
-django-csp
+python-social-auth
 django-summernote
 Pillow
 django-debug-toolbar

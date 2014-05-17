@@ -39,12 +39,7 @@ urlpatterns = patterns(
     # Admin site login
     url(r'^admin/', include(admin.site.urls)),
 
-    # Persona/BrowserID login
-    # url(r'^login-test/$', TemplateView.as_view(template_name='login.html')),
-    # (r'', include('django_browserid.urls')),
-    # url(r'^admin/', include(browserid_admin.urls)),
-
-    # # Default entry point for all angular pages
+    # Default entry point for all angular pages
     url(r'^', TemplateView.as_view(template_name='base.html'),
         name='home'),
 
