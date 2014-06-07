@@ -1,21 +1,105 @@
 {
     "COMPANY": "遠東路線貿易有限公司",
+    "SLOGAN": "將美國精釀啤酒的熱情帶入台灣",
+    "COPYRIGHT": "Copyright - All rights reserved",
     "FLAG": "us-flag.png",
     "FLAG_TITLE": "English",
     "NEXT_LANG": "en",
     "NAV": {
 	"ABOUT": "關於我們",
+	"BLOG": "部落格",
+	"BEER": "產品",
 	"CONTACT": "聯絡我們",
-	"BLOG": "部落格"
+	"HOME": "回到首頁"
+    },
+    "HOME": {
+	"TAIWAN_HEADING": "台灣的精釀啤酒",
+	"TAIWAN_DESC": "想要喝全台灣最好的精釀啤酒嗎？歡迎經銷商或愛酒人與我們連絡！",
+	"TAIWAN_CONTACT": "有任何問題歡迎聯絡我們",
+	"CONTACT_TITLE": "前往連絡我們頁面",
+	"TAIWAN_BUTTON": "看我們的產品",
+	"BREWERIES_HEADING": "美國精釀啤酒廠",
+	"BREWERIES_DESC": "想要和全世界分享你的啤酒嗎？或是不用煩惱物流、就能開發新市場？我們很樂意與你洽談合作！",
+	"BREWERIES_BUTTON": "連絡我們"
+    },
+    "CONTACT": {
+	"TITLE": "連絡遠東路線",
+	"WELCOME": "或直接與以下團隊夥伴連絡，我們很樂意回答您任何問題。",
+	"JOE": {
+	    "NAME": "Joseph Merrell",
+	    "POSITION": "總經理",
+	    "EMAIL": "jmerrell@eastroadtrading.com"
+	},
+	"AMBER": {
+	    "NAME": "Amberdine Sung",
+	    "POSITION": "台灣區經理",
+	    "EMAIL": "amberdine@eastroadtrading.com"
+	},
+	"MARK": {
+	    "NAME": "Mark Wolf",
+	    "POSITION": "美國東岸區經理",
+	    "EMAIL": "mwolf@eastroadtrading.com"
+	},
+	"ADAM": {
+	    "NAME": "Adam Levenburg",
+	    "POSITION": "美國西岸區經理",
+	    "EMAIL": "alevenburg@eastroadtrading.com"
+	}
+    },
+    "CONTACT_FORM": {
+	"NAME_LABEL": "你的姓名",
+	"NAME_PLACEHOLDER": "請填姓名",
+	"EMAIL_LABEL": "電子信箱",
+	"EMAIL_PLACEHOLDER": "請填電子信箱",
+	"ERROR_REQUIRED": "以下為必填項目，我們才能連絡你",
+	"SUBJECTS": {
+	    "GENERAL": "詢問報價",
+	    "RETAILER": "台灣經銷商",
+	    "BREWERY": "美國精釀啤酒廠"
+	},
+	"MESSAGE_LABEL": "寄訊息給我們",
+	"MESSAGE_PLACEHOLDER": "請留下訊息",
+	"SEND_BUTTON": "送出",
+	"RESET_BUTTON": "送出",
+	"STATUS_PENDING": "寄信中",
+	"STATUS_SUCCESS": "寄信成功！我們很快會主動回覆你，謝謝。",
+	"STATUS_ERROR": "寄信失敗，請檢查你的網路連線後再試一次，謝謝。"
     },
     "ABOUT": {
+	"TITLE": "關於遠東路線",
 	"SUMMARY": "遠東路線貿易有限公司提供美國廠商進口台灣時的物流及銷售服務。目前我們協助美國精釀酒廠進口啤酒至台灣，包含申報進口關務、建立及管理在地銷售管道。"
     },
-    "BLOG": {
-	"POST_TITLE": "{{ title_zh_TW }}",
-	"POST_BODY": "{{ text_zh_TW }}"
-    },
     "BEER_STORE": {
-	"STYLE": "{{ short_name_zh_TW }}"
+	"CURRENCY": "TWD",
+	"TITLE": "我們代理的精釀啤酒",
+	"ADD_BUTTON": "放入購物車",
+	"QUANTITY_PLACEHOLDER": "箱",
+	"STYLE": "{{ short_name_zh_TW }}",
+	"DESCRIPTION": "{{ description_zh_TW }}",
+	"OUT_OF_STOCK": "已無庫存",
+	"CART_BUTTON": "購物車 ({{ length }})",
+	"CART_BUTTON_EMPTY": "沒有商品",
+	"CART": {
+	    "TITLE": "詢問報價",
+	    "EMPTY_MESSAGE": "你的購物車目前沒有商品",
+	    "RESET": "移除全部",
+	    "SUBMIT": "結帳",
+	    "TOTAL": "{{ quantity }} 共__箱",
+	    "TH_BEER": "啤酒",
+	    "TH_QUANTITY": "箱",
+	    "TH_UNITPRICE": "單價",
+	    "TH_TOTALPRICE": "價格"
+	}
+    },
+    "BEER_DETAIL": {
+	"BACK_BUTTON": "精釀啤酒清單",
+	"ADD_BUTTON": "放入購物車",
+	"STYLE": "風格:",
+	"STYLE_NAME": "{{ long_name_zh_TW }}",
+	"STOCK": "庫存:",
+	"ABV": "酒精濃度",
+	"IBU": "IBUs:",
+	"PRICE": "價格",
+	"DESCRIPTION": "{{ detail_zh_TW }}"
     }
 }
