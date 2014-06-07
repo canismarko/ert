@@ -35,11 +35,14 @@
     <img src="/static/ert-logo.png" /><h1 translate>COMPANY</h1>
   </div>
 
-  <toaster-container toaster-options="{'show-duration': '150'}"></toaster-container>
+  <toaster-container toaster-options="{'show-duration': '150'}">
+  </toaster-container>
 
   <div class="main-container" ng-class="'true'">
 
     <div class="header" ng-include="'/static/header.html'"></div>
+    <nav class="nav-menu"  role="navigation"
+	 ng-include="'/static/nav.html'"></nav>
 
     <div ng-view class="main-view"></div>
 
@@ -74,6 +77,8 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/bower-angular-translate-loader-static-files/2.0.0/angular-translate-loader-static-files.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.15/angular-cookies.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.15/angular-route.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular-resource.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular-sanitize.min.js"></script>
   <script src="{% static 'angular-local-storage.min.js' %}"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
   {% endif %}

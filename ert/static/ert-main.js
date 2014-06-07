@@ -48,7 +48,7 @@ var ertMain = angular.module(
 	    suffix: '.json'
 	})
 	.preferredLanguage('en')
-	// .fallbackLanguage('en')
+	.fallbackLanguage('en')
 }])
 
 .controller('langSelect', ['$scope', '$translate', function($scope, $translate) {

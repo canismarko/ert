@@ -50,18 +50,30 @@ body {
     .logo {
 	.make-md-column(6);
     }
-    .nav-menu {
-	.make-xs-column(10);
-	.make-md-column(5);
-	ul { .pull-right;}
+}
+
+nav.nav-menu {
+    .navbar;
+    .navbar-default;
+}
+
+.nav {
+    .nav-icon {
+	a {
+	    padding: 13px 9px;
+	}
+	a:hover {
+	    padding: 9px;
+	    img {
+		height: 32px;
+	    }
+	}
+	img {
+	    height: 24px;
+	}
     }
     .lang-select {
-	.make-xs-column(2);
-	.make-md-column(1);
-	.text-center;
-	img,>div {
-	    cursor: pointer;
-	}
+	cursor: pointer;
     }
 }
 
