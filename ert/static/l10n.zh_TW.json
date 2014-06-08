@@ -69,6 +69,10 @@
 	"TITLE": "關於遠東路線",
 	"SUMMARY": "遠東路線貿易有限公司提供美國廠商進口台灣時的物流及銷售服務。目前我們協助美國精釀酒廠進口啤酒至台灣，包含申報進口關務、建立及管理在地銷售管道。"
     },
+    "BLOG": {
+	"POST_TITLE": "{{ title_zh_TW }}",
+	"POST_BODY": "{{ text_zh_TW }}"
+    },
     "BEER_STORE": {
 	"CURRENCY": "TWD",
 	"TITLE": "我們代理的精釀啤酒",
