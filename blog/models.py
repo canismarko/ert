@@ -13,7 +13,7 @@ class Post(models.Model):
     published_timestamp = models.DateTimeField(default=dt.now)
     draft = models.BooleanField(default=False)
 
-    def __str__(self):
+    def __unicode__(self):
         # English title if available, otherwise, Chinese
         if self.title_en != '':
             return self.title_en

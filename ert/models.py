@@ -14,7 +14,7 @@ class ContactRequest(models.Model):
     email = models.TextField(blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
+    def __unicode__(self):
         return "{sender} - {subject}".format(sender=(self.name or self.email),
                                              subject=self.subject)
 

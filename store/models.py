@@ -27,7 +27,7 @@ class Beer(models.Model):
     picture = models.ImageField(null=True, upload_to="beer")
     thumbnail = models.ImageField(null=True, upload_to="beer")
 
-    def __str__(self):
+    def __unicode__(self):
         return "{brewery} - {name}".format(name=self.name,
                                          brewery=self.brewery.name)
 
@@ -42,7 +42,7 @@ class Brewery(models.Model):
     description_en = models.TextField(blank=True)
     description_zh_TW = models.TextField(blank=True)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name
 
 class Style(models.Model):
@@ -55,7 +55,7 @@ class Style(models.Model):
     long_name_zh_TW = models.CharField(max_length=100, blank=True)
     family = models.ForeignKey('StyleFamily')
 
-    def __str__(self):
+    def __unicode__(self):
         return "{long} ({short})".format(long=self.long_name_en,
                                          short=self.short_name_en)
 
@@ -67,7 +67,7 @@ class StyleFamily(models.Model):
     name_en = models.CharField(max_length=20)
     name_zh_TW = models.CharField(max_length=20)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name_en
 
 
@@ -79,7 +79,7 @@ class SupplyUnit(models.Model):
     quantity = models.IntegerField()
     order_date = models.DateTimeField(null=True, default=dt.now)
 
-    def __str__(self):
+    def __unicode__(self):
         return "{beer} - {date} ({quantity})".format(
             beer=self.beer.name,
             date=self.order_date.date(),
@@ -172,7 +172,7 @@ class Order(models.Model):
         email.send()
         return None
 
-    def __str__(self):
+    def __unicode__(self):
         if self.company_name:
             name_str = "[{status}] {f_name} {l_name} ({company}) - {time}"
         else:
@@ -196,8 +196,9 @@ class OrderItem(models.Model):
     def total_price(self):
         return self.beer.price * self.quantity
 
-    def __str__(self):
+    def __unicode__(self):
         return "{quant} x {beer} for {order}".format(
             quant=self.quantity,
-            beer=self.beer.__str__(),
-            order=self.order.__str__())
+            beer=unicode(self.beer),
+            order=unicode(self.order)
+        )
