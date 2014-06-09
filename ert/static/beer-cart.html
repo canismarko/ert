@@ -2,8 +2,8 @@
 <div ng-show="currentOrder.length === 0" class="btn-group">
   <button class="btn btn-default" data-toggle="modal" data-target="#cartModal">
     <span class="cart-icon"></span>
-    <span translate>
-      BEER_STORE.CART_BUTTON_EMPTY
+    <span>
+      {{ 'BEER_STORE.CART_BUTTON_EMPTY' | translate }}
     </span>
   </button>
   <a class="btn btn-default" href="/beer/checkout/"
@@ -16,7 +16,7 @@
 <div ng-show="currentOrder.length > 0" class="btn-group">
   <button class="btn btn-primary" data-toggle="modal" data-target="#cartModal">
     <span class="cart-icon"></span>
-    <span translate>
+    <span>
       {{ 'BEER_STORE.CART_BUTTON' | translate:currentOrder }}
     </span>
   </button>
