@@ -7,11 +7,12 @@
     "NEXT_LANG": "zh_TW",
     "CLOSE_BUTTON": "Close",
     "NAV": {
+	"HOME": "Home",
 	"ABOUT": "About Us",
 	"BLOG": "Blog",
 	"BEER": "Products",
 	"CONTACT": "Contact Us",
-	"HOME": "Back to homepage"
+	"HOME_TITLE": "Back to homepage"
     },
     "HOME": {
 	"TAIWAN_HEADING": "Beer in Taiwan",

@@ -13,6 +13,12 @@
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">
+      <li ng-class="linkClasses.about">
+	<a href="/about/">
+	  <span class="glyphicon glyphicon-home"></span>
+	  <span translate>NAV.HOME</span>
+	</a>
+      </li>
       <li ng-class="linkClasses.about"><a href="/about/" translate>NAV.ABOUT</a></li>
       <li ng-class="linkClasses.blog"><a href="/blog/" translate>NAV.BLOG</a></li>
       <li ng-class="linkClasses.beer"><a href="/beer/" translate>NAV.BEER</a></li>
